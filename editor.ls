@@ -18,12 +18,14 @@ setup = (box) ->
   css-input.add-event-listener \keydown, -> set-timeout put-css
 
   chrome.storage.sync.get [\!default, location.host], (data) ->
-    run-js data[\!default].css or ''
-    box.query-selector(\.cweb-css-style).text-content = data[\!default].js or ''
-    css-input.value = data[location.host].css or ''
-    put-css!
-    js-input.value = data[location.host].js or ''
-    run-js!
+    if data[\!default]
+      run-js data[\!default].css or ''
+      box.query-selector(\.cweb-css-style).text-content = data[\!default].js or ''
+    if data[location.host]
+      css-input.value = data[location.host].css or ''
+      put-css!
+      js-input.value = data[location.host].js or ''
+      run-js!
 
   box.query-selector(\.cweb-save-btn).add-event-listener \click, ->
     chrome.storage.sync.set (location.host):
