@@ -3,6 +3,9 @@ setup = (box) ->
   css-style = box.query-selector \.cweb-css-style
   js-input = box.query-selector \.cweb-js-input
 
+  new Behave textarea: css-input, tab-size: 2
+  new Behave textarea: js-input, tab-size: 2
+
   put-css = ->
     css-style.text-content = css-input.value
 
@@ -34,7 +37,7 @@ setup = (box) ->
   box.query-selector(\.cweb-close-btn).add-event-listener \click, toggle-box
 
 toggle-box = ->
-  box.style.display = if box.style.display is \none then \block else \none
+  box.classList.toggle \active
 
 box = document.get-element-by-id \custom-web-box
 
@@ -43,7 +46,6 @@ if box
 else
   box = document.create-element \div
   box.set-attribute \id, \custom-web-box
-  toggle-box!
   document.body.append-child box
 
   xhr = new XMLHttpRequest!

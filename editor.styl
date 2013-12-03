@@ -1,7 +1,9 @@
 #custom-web-box
+  display none
   position fixed
   background white
   color #333
+  font 14px sans
   right 0
   top 0
   width 340px
@@ -11,12 +13,19 @@
   z-index 99999
   box-shadow 0 0 6px rgba(0, 0, 0, .7)
 
-  *
-    box-sizing border-box
+  &.active
+    display block
 
   &.left
     right auto
     left 0
+
+  *
+    box-sizing border-box
+
+  h1
+    color inherit
+    font-size 1.2em
 
   label
     display block
@@ -25,3 +34,8 @@
   textarea
     width 100%
     height 120px
+    font-family monospace
+    font-size inherit
+
+  button
+    font inherit

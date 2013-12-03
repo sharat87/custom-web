@@ -8,7 +8,11 @@
     "default_icon": "icon.png",
     "default_title": "Customize this site"
   },
-  "content_scripts": [{"matches": ["<all_urls>"], "js": ["editor.js"], "css": ["editor.css"]}],
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "css": ["editor.css"],
+    "js": ["vendor/behave.js", "editor.js"]
+  }],
   "options_page": "options.html",
   "web_accessible_resources": ["editor.html"],
   "manifest_version": 2
