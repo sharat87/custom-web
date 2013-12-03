@@ -27,6 +27,9 @@ setup = (box) ->
       css: css-input.value or ''
       js: js-input.value or ''
 
+  box.query-selector(\.cweb-move-btn).add-event-listener \click, ->
+    box.class-list.toggle \left
+
   box.query-selector(\.cweb-run-btn).add-event-listener \click, run-js
   box.query-selector(\.cweb-close-btn).add-event-listener \click, toggle-box
 
