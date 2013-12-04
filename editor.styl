@@ -16,6 +16,18 @@
   &.active
     display block
 
+  &.active-add, &.active-rem
+    display block
+    transition all .3s ease
+
+  &.active-add, &.active-remed
+    -webkit-transform translateX(200px)
+    opacity 0
+
+  &.active-added, &.active-rem
+    -webkit-transform translateX(0)
+    opacity 1
+
   &.left
     right auto
     left 0

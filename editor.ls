@@ -1,3 +1,32 @@
+anim =
+  add-class: (el, cls) ->
+    el.class-list.add "#{cls}-add"
+    set-timeout ->
+      el.class-list.add cls, "#{cls}-added"
+      set-timeout ->
+        el.class-list.remove "#{cls}-add", "#{cls}-added"
+      , anim.transition-duration(el)
+    , 10
+
+  remove-class: (el, cls) ->
+    el.class-list.add "#{cls}-rem"
+    set-timeout ->
+      el.class-list.remove cls
+      el.class-list.add "#{cls}-remed"
+      set-timeout ->
+        el.class-list.remove "#{cls}-rem", "#{cls}-remed"
+      , anim.transition-duration(el)
+    , 10
+
+  toggle-class: (el, cls) ->
+    if el.classList.contains cls
+      @removeClass el, cls
+    else
+      @addClass el, cls
+
+  transition-duration: (el) ->
+    window.get-computed-style(el).get-property-value(\transition-duration).slice(0, -1) * 1000
+
 setup = (box) ->
   css-input = box.query-selector \.cweb-css-input
   css-style = box.query-selector \.cweb-css-style
@@ -38,8 +67,10 @@ setup = (box) ->
   box.query-selector(\.cweb-run-btn).add-event-listener \click, run-js
   box.query-selector(\.cweb-close-btn).add-event-listener \click, toggle-box
 
+  css-input.focus!
+
 toggle-box = ->
-  box.classList.toggle \active
+  anim.toggleClass box, \active
 
 box = document.get-element-by-id \custom-web-box
 
