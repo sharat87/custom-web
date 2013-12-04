@@ -89,4 +89,4 @@ else
   xhr.send!
 
 chrome.runtime.on-message.add-listener (action) ->
-  toggle-box! if action is \open
+  toggle-box! if action is \toggle

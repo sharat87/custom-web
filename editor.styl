@@ -2,7 +2,7 @@
   display none
   position fixed
   background white
-  color #333
+  color #222
   font 14px sans
   right 0
   top 0
@@ -10,7 +10,8 @@
   height 100%
   padding 6px
   box-sizing border-box
-  z-index 99999
+  overflow-y auto
+  z-index 9999999999
   box-shadow 0 0 6px rgba(0, 0, 0, .7)
 
   &.active
@@ -20,11 +21,11 @@
     display block
     transition all .3s ease
 
-  &.active-add, &.active-remed
+  &.active-add, &.active-rem.active-remed
     -webkit-transform translateX(200px)
     opacity 0
 
-  &.active-added, &.active-rem
+  &.active-add.active-added, &.active-rem
     -webkit-transform translateX(0)
     opacity 1
 
@@ -41,7 +42,7 @@
 
   textarea
     width 100%
-    height 120px
+    height 200px
     display block
     margin-bottom 12px
     font-family monospace
@@ -51,6 +52,8 @@
     border-radius 1px
     border-color rgba(0, 0, 0, .2)
     box-shadow inset 0 0 9px @border-color
+    background-color rgba(0, 0, 0, .05)
+    color inherit
 
     &:focus
       border-color rgba(0, 80, 200, .6)
@@ -59,4 +62,18 @@
   button
     font inherit
     cursor pointer
-    padding 1px 6px
+    margin 3px
+    padding 3px 6px
+    background-color inherit
+    color inherit
+    border-radius 2px
+    border 1px solid rgba(0, 0, 0, .4)
+    box-shadow 0 1px 0 @border-color
+    opacity .8
+
+    &:hover
+      opacity 1
+
+    &:active
+      box-shadow none
+      -webkit-transform translateY(1px)
