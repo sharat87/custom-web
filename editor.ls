@@ -29,79 +29,67 @@ anim =
   transition-duration: (el) ->
     window.get-computed-style(el).get-property-value(\transition-duration).slice(0, -1) * 1000
 
-setup = (box) ->
-  css-input = box.query-selector \.cweb-css-input
-  css-style = box.query-selector \.cweb-css-style
-  js-input = box.query-selector \.cweb-js-input
+setup = ->
+  css-input = box.find \.cweb-css-input
+  css-style = box.find \.cweb-css-style
+  js-input = box.find \.cweb-js-input
 
-  new Behave textarea: css-input, tab-size: 2
-  new Behave textarea: js-input, tab-size: 2
+  new Behave textarea: css-input[0], tab-size: 2
+  new Behave textarea: js-input[0], tab-size: 2
 
   put-css = ->
-    css-style.text-content = css-input.value
+    css-style.text css-input.val!
 
-  css-input.add-event-listener \keydown, -> set-timeout put-css
+  css-input.keydown -> set-timeout put-css
 
   chrome.storage.sync.get [\!default, location.host], (data) ->
-    console.info data
     if data[\!default]
-      box.query-selector(\.cweb-css-style).text-content = data[\!default].js or ''
-      run-js data[\!default].js or ''
+      box.find(\.cweb-def-style).text data[\!default].js || ''
+      run-js data[\!default].js || ''
     if data[location.host]
-      css-input.value = data[location.host].css or ''
+      css-input.val data[location.host].css || ''
       put-css!
-      js-input.value = data[location.host].js or ''
-      run-js js-input.value
+      js-input.val data[location.host].js || ''
+      run-js js-input.val!
 
-  box.query-selector(\.cweb-save-btn).add-event-listener \click, ->
+  box.find(\.cweb-save-btn).click ->
     chrome.storage.sync.set (location.host):
-      css: css-input.value or ''
-      js: js-input.value or ''
+      css: css-input.val() or ''
+      js: js-input.val() or ''
 
-  box.query-selector(\.cweb-move-btn).add-event-listener \click, ->
-    box.class-list.toggle \left
-
-  box.query-selector(\.cweb-run-btn).add-event-listener \click, -> run-js js-input.value
-  box.query-selector(\.cweb-close-btn).add-event-listener \click, toggle-box
-
-  box.query-selector(\.cweb-open-btn).set-attribute \href,
-    chrome.extension.getURL \options.html
+  box.find(\.cweb-move-btn).click -> box.toggle-class \left
+  box.find(\.cweb-run-btn).click -> run-js js-input.val!
+  box.find(\.cweb-close-btn).click toggle-box
+  box.find(\.cweb-open-btn).attr \href, chrome.extension.getURL \options.html
 
   css-input.focus!
 
 init-ui = ->
-  box := document.get-element-by-id \custom-web-box
-
-  if box
-    setup box
+  box := $ \#custom-web-box
+  if box.length
+    setup!
   else
-    box := document.create-element \div
-    box.set-attribute \id, \custom-web-box
-    document.body.append-child box
-
-    xhr = new XMLHttpRequest!
-    xhr.open \GET, chrome.extension.getURL(\editor.html), yes
-    xhr.add-event-listener \load, ->
-      box.innerHTML = xhr.response-text
-      setup box
-    xhr.send!
+    box := $ '<div id=custom-web-box>' .append-to document.body
+    $.get chrome.extension.getURL(\editor.html), (data) ->
+      box.html data
+      setup!
 
 toggle-box = ->
-  anim.toggleClass box, \active
+  box.toggle!
 
 run-js = (code, wrap=yes) ->
   if wrap
     code = "(function ($) { var jQuery = $; #{code} }.call(__cweb_scope, __cweb_jQuery));"
-  el = document.create-element \script
-  el.text-content = code
-  document.body.append-child el
-  document.body.remove-child el
+  el = $ '<script>'
+  el.text code
+  el.append-to document.body
+  el.remove!
 
 do ->
   chrome.runtime.on-message.add-listener (action) ->
     toggle-box! if action is \toggle
 
   $.ajax chrome.extension.getURL('vendor/jquery-2.0.3.min.js'),
-    success: (data, status, xhr) ->
+    success: (data) ->
       run-js "#{data}; var __cweb_jQuery = jQuery.noConflict(true), __cweb_scope = {};", no
       init-ui!
