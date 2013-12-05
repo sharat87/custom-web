@@ -36,7 +36,6 @@ setup = ->
 
   box.find(\.cweb-run-btn).click -> run-js js-input.val!
   box.find(\.cweb-close-btn).click toggle-box
-  box.find(\.cweb-open-btn).attr \href, chrome.extension.getURL \options.html
 
   css-input.focus!
 
