@@ -11,9 +11,9 @@
   "content_scripts": [{
     "matches": ["<all_urls>"],
     "css": ["editor.css"],
-    "js": ["vendor/behave.js", "editor.js"]
+    "js": ["vendor/jquery-2.0.3.min.js", "vendor/behave.js", "editor.js"]
   }],
   "options_page": "options.html",
-  "web_accessible_resources": ["editor.html"],
+  "web_accessible_resources": ["editor.html", "vendor/jquery-2.0.3.min.js"],
   "manifest_version": 2
 }

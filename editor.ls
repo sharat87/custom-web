@@ -1,3 +1,5 @@
+var box
+
 anim =
   add-class: (el, cls) ->
     el.class-list.add "#{cls}-add"
@@ -38,23 +40,18 @@ setup = (box) ->
   put-css = ->
     css-style.text-content = css-input.value
 
-  run-js = (code=js-input.value) ->
-    el = document.create-element \script
-    el.text-content = code
-    document.body.append-child el
-    document.body.remove-child el
-
   css-input.add-event-listener \keydown, -> set-timeout put-css
 
   chrome.storage.sync.get [\!default, location.host], (data) ->
+    console.info data
     if data[\!default]
-      run-js data[\!default].css or ''
       box.query-selector(\.cweb-css-style).text-content = data[\!default].js or ''
+      run-js data[\!default].js or ''
     if data[location.host]
       css-input.value = data[location.host].css or ''
       put-css!
       js-input.value = data[location.host].js or ''
-      run-js!
+      run-js js-input.value
 
   box.query-selector(\.cweb-save-btn).add-event-listener \click, ->
     chrome.storage.sync.set (location.host):
@@ -64,29 +61,47 @@ setup = (box) ->
   box.query-selector(\.cweb-move-btn).add-event-listener \click, ->
     box.class-list.toggle \left
 
-  box.query-selector(\.cweb-run-btn).add-event-listener \click, run-js
+  box.query-selector(\.cweb-run-btn).add-event-listener \click, -> run-js js-input.value
   box.query-selector(\.cweb-close-btn).add-event-listener \click, toggle-box
 
+  box.query-selector(\.cweb-open-btn).set-attribute \href,
+    chrome.extension.getURL \options.html
+
   css-input.focus!
+
+init-ui = ->
+  box := document.get-element-by-id \custom-web-box
+
+  if box
+    setup box
+  else
+    box := document.create-element \div
+    box.set-attribute \id, \custom-web-box
+    document.body.append-child box
+
+    xhr = new XMLHttpRequest!
+    xhr.open \GET, chrome.extension.getURL(\editor.html), yes
+    xhr.add-event-listener \load, ->
+      box.innerHTML = xhr.response-text
+      setup box
+    xhr.send!
 
 toggle-box = ->
   anim.toggleClass box, \active
 
-box = document.get-element-by-id \custom-web-box
+run-js = (code, wrap=yes) ->
+  if wrap
+    code = "(function ($) { var jQuery = $; #{code} }.call(__cweb_scope, __cweb_jQuery));"
+  el = document.create-element \script
+  el.text-content = code
+  document.body.append-child el
+  document.body.remove-child el
 
-if box
-  setup box
-else
-  box = document.create-element \div
-  box.set-attribute \id, \custom-web-box
-  document.body.append-child box
+do ->
+  chrome.runtime.on-message.add-listener (action) ->
+    toggle-box! if action is \toggle
 
-  xhr = new XMLHttpRequest!
-  xhr.open \GET, chrome.extension.getURL(\editor.html), yes
-  xhr.add-event-listener \load, ->
-    box.innerHTML = xhr.response-text
-    setup box
-  xhr.send!
-
-chrome.runtime.on-message.add-listener (action) ->
-  toggle-box! if action is \toggle
+  $.ajax chrome.extension.getURL('vendor/jquery-2.0.3.min.js'),
+    success: (data, status, xhr) ->
+      run-js "#{data}; var __cweb_jQuery = jQuery.noConflict(true), __cweb_scope = {};", no
+      init-ui!
