@@ -4,7 +4,6 @@
   background white
   color #222
   font 14px sans
-  right 0
   top 0
   width 340px
   height 100%
@@ -13,25 +12,6 @@
   overflow-y auto
   z-index 9999999999
   box-shadow 0 0 6px rgba(0, 0, 0, .7)
-
-  &.active
-    display block
-
-  &.active-add, &.active-rem
-    display block
-    transition all .3s ease
-
-  &.active-add, &.active-rem.active-remed
-    -webkit-transform translateX(200px)
-    opacity 0
-
-  &.active-add.active-added, &.active-rem
-    -webkit-transform translateX(0)
-    opacity 1
-
-  &.left
-    right auto
-    left 0
 
   *
     box-sizing border-box

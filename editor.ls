@@ -1,34 +1,5 @@
 var box
 
-anim =
-  add-class: (el, cls) ->
-    el.class-list.add "#{cls}-add"
-    set-timeout ->
-      el.class-list.add cls, "#{cls}-added"
-      set-timeout ->
-        el.class-list.remove "#{cls}-add", "#{cls}-added"
-      , anim.transition-duration(el)
-    , 10
-
-  remove-class: (el, cls) ->
-    el.class-list.add "#{cls}-rem"
-    set-timeout ->
-      el.class-list.remove cls
-      el.class-list.add "#{cls}-remed"
-      set-timeout ->
-        el.class-list.remove "#{cls}-rem", "#{cls}-remed"
-      , anim.transition-duration(el)
-    , 10
-
-  toggle-class: (el, cls) ->
-    if el.classList.contains cls
-      @removeClass el, cls
-    else
-      @addClass el, cls
-
-  transition-duration: (el) ->
-    window.get-computed-style(el).get-property-value(\transition-duration).slice(0, -1) * 1000
-
 setup = ->
   css-input = box.find \.cweb-css-input
   css-style = box.find \.cweb-css-style
@@ -57,7 +28,12 @@ setup = ->
       css: css-input.val() or ''
       js: js-input.val() or ''
 
-  box.find(\.cweb-move-btn).click -> box.toggle-class \left
+  box.find(\.cweb-move-btn).click ->
+    box.stop!.animate do
+      right: if box.css(\right) isnt \0px then 0
+          else document.body.client-width - box.inner-width!
+      200
+
   box.find(\.cweb-run-btn).click -> run-js js-input.val!
   box.find(\.cweb-close-btn).click toggle-box
   box.find(\.cweb-open-btn).attr \href, chrome.extension.getURL \options.html
@@ -70,12 +46,18 @@ init-ui = ->
     setup!
   else
     box := $ '<div id=custom-web-box>' .append-to document.body
+    box.css right: 0
     $.get chrome.extension.getURL(\editor.html), (data) ->
       box.html data
       setup!
 
 toggle-box = ->
-  box.toggle!
+  hide-style = right: -box.inner-width!/2 opacity: 0
+  show-style = right: 0 opacity: 1
+  if box.is \:visible
+    box.animate hide-style, 200, -> box.hide!
+  else
+    box.show!.css hide-style .animate show-style, 200
 
 run-js = (code, wrap=yes) ->
   if wrap
