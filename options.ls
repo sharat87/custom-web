@@ -9,7 +9,12 @@ chrome.storage.sync.get \!default, (data) ->
     css-input.value = data[\!default].css or ''
     js-input.value = data[\!default].js or ''
 
-document.get-element-by-id(\save-btn).add-event-listener \click, ->
+save = ->
   chrome.storage.sync.set '!default':
     css: css-input.value
     js: js-input.value
+
+css-input.add-event-listener \keyup, save
+js-input.add-event-listener \keyup, save
+css-input.add-event-listener \change, save
+js-input.add-event-listener \change, save
