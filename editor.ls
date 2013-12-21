@@ -23,7 +23,7 @@ setup = ->
       js-input.val data[location.host].js || ''
       run-js js-input.val!
 
-  box.find(\.cweb-save-btn).click ->
+  css-input.add js-input .keydown ->
     chrome.storage.sync.set (location.host):
       css: css-input.val() or ''
       js: js-input.val() or ''
