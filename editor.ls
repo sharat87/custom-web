@@ -1,22 +1,24 @@
 var box
 
+domain-style = $ '<style>' .append-to document.body
+default-style = $ '<style>' .append-to document.body
+
 setup = ->
   textareas = box.find \textarea
   css-input = box.find \.cweb-css-input
-  css-style = box.find \.cweb-css-style
   js-input = box.find \.cweb-js-input
 
   new Behave textarea: css-input[0], tab-size: 2
   new Behave textarea: js-input[0], tab-size: 2
 
   put-css = ->
-    css-style.text css-input.val!
+    domain-style.text css-input.val!
 
   css-input.keydown -> set-timeout put-css
 
   chrome.storage.sync.get [\!default, location.host], (data) ->
     if data[\!default]
-      box.find(\.cweb-def-style).text data[\!default].js || ''
+      default-style.text data[\!default].js || ''
       run-js data[\!default].js || ''
     if data[location.host]
       css-input.val data[location.host].css || ''
