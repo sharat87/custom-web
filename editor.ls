@@ -1,6 +1,7 @@
 var box
 
 setup = ->
+  textareas = box.find \textarea
   css-input = box.find \.cweb-css-input
   css-style = box.find \.cweb-css-style
   js-input = box.find \.cweb-js-input
@@ -19,11 +20,13 @@ setup = ->
       run-js data[\!default].js || ''
     if data[location.host]
       css-input.val data[location.host].css || ''
+      adjust-size css-input
       put-css!
       js-input.val data[location.host].js || ''
+      adjust-size js-input
       run-js js-input.val!
 
-  css-input.add js-input .on 'keyup change', ->
+  textareas.on 'keyup change', ->
     chrome.storage.sync.set (location.host):
       css: css-input.val() or ''
       js: js-input.val() or ''
@@ -35,6 +38,13 @@ setup = ->
       200
 
   box.find(\.cweb-run-btn).click -> run-js js-input.val!
+
+  adjust-size = (textareas) ->
+    textareas.attr \rows, ->
+      Math.max 1 this.value.split('\n').length
+
+  textareas.on \keydown, (e) -> set-timeout -> adjust-size $(e.target)
+  textareas.on \change, -> adjust-size $(this)
 
   css-input.focus!
 
