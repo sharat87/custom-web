@@ -35,7 +35,6 @@ setup = ->
       200
 
   box.find(\.cweb-run-btn).click -> run-js js-input.val!
-  box.find(\.cweb-close-btn).click toggle-box
 
   css-input.focus!
 
