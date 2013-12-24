@@ -81,7 +81,6 @@ do ->
   chrome.runtime.on-message.add-listener (action) ->
     toggle-box! if action is \toggle
 
-  $.ajax chrome.extension.getURL('vendor/jquery-2.0.3.min.js'),
-    success: (data) ->
-      run-js "#{data}; var __cweb_jQuery = jQuery.noConflict(true), __cweb_scope = {};", no
-      init-ui!
+  $.get chrome.extension.getURL('vendor/jquery-2.0.3.min.js'), (data) ->
+    run-js "#{data}; var __cweb_jQuery = jQuery.noConflict(true), __cweb_scope = {};", no
+    init-ui!
