@@ -43,7 +43,7 @@ setup = ->
 
   adjust-size = (textareas) ->
     textareas.attr \rows, ->
-      Math.max 1 this.value.split('\n').length
+      Math.max 8 this.value.split('\n').length
 
   textareas.on \keydown, (e) -> set-timeout -> adjust-size $(e.target)
   textareas.on \change, -> adjust-size $(this)
