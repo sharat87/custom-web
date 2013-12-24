@@ -1,38 +1,20 @@
-app =
-  reg: {}
-
-  fire: (topic) ->
-    fns = @reg[topic]
-    len = if fns then fns.length else 0
-    while len--
-      fns[len].apply app, Array::slice.call(arguments, 1)
-
-  on: (topic, fn) ->
-    (@reg[topic] or= []).push fn
-    [topic, fn]
-
-  off: (handle) ->
-    subs = @reg[handle[0]]
-    fn = handle[1]
-    len = subs ? subs.length : 0;
-    while len--
-      subs.splice(len, 1) if subs[len] is callback
-
-  init-styles: ->
-    app.domain-style = $ '<style cweb-dom>'
-    app.default-style = $ '<style cweb-def>'
-
-    # Make sure the style elements are the last in the document, for precedence
-    # purposes, and that is always present on the page, somewhere.
-    _in = set-interval ->
-      app.default-style.add app.domain-style .append-to document.documentElement
-      clear-interval _in if document.head and document.body
-    , 200
-
-    app.on \default-css, (css) -> app.default-style.text css
-    app.on \domain-css, (css) -> app.domain-style.text css
-
 var box
+
+domain-style = $ '<style cweb-dom>'
+default-style = $ '<style cweb-def>'
+
+# Make sure the style elements are the last in the document, for precedence
+# purposes, and that is always present on the page, somewhere.
+_in = set-interval ->
+  default-style.add domain-style .append-to document.document-element
+  clear-interval _in if document.head and document.body
+, 200
+
+chrome.storage.sync.get [\!default, location.host], (data) ->
+  if data[\!default]
+    default-style.text data[\!default].css || ''
+  if data[location.host]
+    domain-style.text data[location.host].css || ''
 
 setup = ->
   textareas = box.find \textarea
@@ -43,17 +25,7 @@ setup = ->
   new Behave textarea: js-input[0], tab-size: 2
 
   css-input.keydown -> set-timeout ->
-    app.domain-style.text css-input.val!
-
-  chrome.storage.sync.get [\!default, location.host], (data) ->
-    if data[\!default]
-      run-js data[\!default].js || ''
-    if data[location.host]
-      css-input.val data[location.host].css || ''
-      adjust-size css-input
-      js-input.val data[location.host].js || ''
-      adjust-size js-input
-      run-js js-input.val!
+    domain-style.text css-input.val!
 
   textareas.on 'keyup change', ->
     chrome.storage.sync.set (location.host):
@@ -75,18 +47,24 @@ setup = ->
   textareas.on \keydown, (e) -> set-timeout -> adjust-size $(e.target)
   textareas.on \change, -> adjust-size $(this)
 
+  chrome.storage.sync.get [\!default, location.host], (data) ->
+    if data[\!default]
+      run-js data[\!default].js || ''
+    if data[location.host]
+      css-input.val data[location.host].css || ''
+      adjust-size css-input
+      js-input.val data[location.host].js || ''
+      adjust-size js-input
+      run-js js-input.val!
+
   css-input.focus!
 
 init-ui = ->
-  box := $ \#custom-web-box
-  if box.length
+  box := $ '<div id=custom-web-box>' .append-to document.body
+  box.css right: 0
+  $.get chrome.extension.getURL(\editor.html), (data) ->
+    box.html data
     setup!
-  else
-    box := $ '<div id=custom-web-box>' .append-to document.body
-    box.css right: 0
-    $.get chrome.extension.getURL(\editor.html), (data) ->
-      box.html data
-      setup!
 
 toggle-box = ->
   hide-style = right: -box.inner-width!/2 opacity: 0
@@ -99,18 +77,9 @@ toggle-box = ->
 run-js = (code, wrap=yes) ->
   if wrap
     code = "(function ($) { var jQuery = $; #{code} }.call(__cweb_scope, __cweb_jQuery));"
-  el = $ '<script>'
-  el.text code
-  el.append-to document.body
+  el = $ '<script>', text: code
+  el.append-to document.body || document.document-element
   el.remove!
-
-app.init-styles!
-
-chrome.storage.sync.get [\!default, location.host], (data) ->
-  if data[\!default]?.css
-    app.fire \default-css, data[\!default].css
-  if data[location.host]?.css
-    app.fire \domain-css, data[location.host].css
 
 chrome.runtime.on-message.add-listener (action) ->
   toggle-box! if action is \toggle
