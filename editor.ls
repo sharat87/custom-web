@@ -1,7 +1,20 @@
-var box
+var box, domain-style, default-style
 
-domain-style = $ '<style>' .append-to document.body
-default-style = $ '<style>' .append-to document.body
+domain-style = $ '<style cweb-dom>'
+default-style = $ '<style cweb-def>'
+
+# Make sure the style elements are the last in the document, for precedence
+# purposes, and that is always present on the page, somewhere.
+_in = set-interval ->
+  default-style.add domain-style .append-to document.documentElement
+  clear-interval _in if document.head and document.body
+, 300
+
+chrome.storage.sync.get [\!default, location.host], (data) ->
+  if data[\!default]
+    default-style.text data[\!default].css || ''
+  if data[location.host]
+    domain-style.text data[location.host].css || ''
 
 setup = ->
   textareas = box.find \textarea
@@ -11,19 +24,15 @@ setup = ->
   new Behave textarea: css-input[0], tab-size: 2
   new Behave textarea: js-input[0], tab-size: 2
 
-  put-css = ->
+  css-input.keydown -> set-timeout ->
     domain-style.text css-input.val!
-
-  css-input.keydown -> set-timeout put-css
 
   chrome.storage.sync.get [\!default, location.host], (data) ->
     if data[\!default]
-      default-style.text data[\!default].js || ''
       run-js data[\!default].js || ''
     if data[location.host]
       css-input.val data[location.host].css || ''
       adjust-size css-input
-      put-css!
       js-input.val data[location.host].js || ''
       adjust-size js-input
       run-js js-input.val!
@@ -77,7 +86,7 @@ run-js = (code, wrap=yes) ->
   el.append-to document.body
   el.remove!
 
-do ->
+$ ->
   chrome.runtime.on-message.add-listener (action) ->
     toggle-box! if action is \toggle
 
