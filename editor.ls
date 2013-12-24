@@ -29,18 +29,10 @@ app =
       clear-interval _in if document.head and document.body
     , 200
 
+    app.on \default-css, (css) -> app.default-style.text css
+    app.on \domain-css, (css) -> app.domain-style.text css
+
 var box
-
-app.init-styles!
-
-app.on \default-css, (css) -> app.default-style.text css
-app.on \domain-css, (css) -> app.domain-style.text css
-
-chrome.storage.sync.get [\!default, location.host], (data) ->
-  if data[\!default]?.css
-    app.fire \default-css, data[\!default].css
-  if data[location.host]?.css
-    app.fire \domain-css, data[location.host].css
 
 setup = ->
   textareas = box.find \textarea
@@ -111,6 +103,14 @@ run-js = (code, wrap=yes) ->
   el.text code
   el.append-to document.body
   el.remove!
+
+app.init-styles!
+
+chrome.storage.sync.get [\!default, location.host], (data) ->
+  if data[\!default]?.css
+    app.fire \default-css, data[\!default].css
+  if data[location.host]?.css
+    app.fire \domain-css, data[location.host].css
 
 chrome.runtime.on-message.add-listener (action) ->
   toggle-box! if action is \toggle
