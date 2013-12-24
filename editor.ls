@@ -8,7 +8,7 @@ default-style = $ '<style cweb-def>'
 _in = set-interval ->
   default-style.add domain-style .append-to document.documentElement
   clear-interval _in if document.head and document.body
-, 300
+, 200
 
 chrome.storage.sync.get [\!default, location.host], (data) ->
   if data[\!default]
@@ -86,10 +86,9 @@ run-js = (code, wrap=yes) ->
   el.append-to document.body
   el.remove!
 
-$ ->
-  chrome.runtime.on-message.add-listener (action) ->
-    toggle-box! if action is \toggle
+chrome.runtime.on-message.add-listener (action) ->
+  toggle-box! if action is \toggle
 
-  $.get chrome.extension.getURL('vendor/jquery-2.0.3.min.js'), (data) ->
-    run-js "#{data}; var __cweb_jQuery = jQuery.noConflict(true), __cweb_scope = {};", no
-    init-ui!
+$.get chrome.extension.getURL('vendor/jquery-2.0.3.min.js'), (data) ->
+  run-js "#{data}; var __cweb_jQuery = jQuery.noConflict(true), __cweb_scope = {};", no
+  $ init-ui
