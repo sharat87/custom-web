@@ -1,20 +1,46 @@
-var box, domain-style, default-style
+app =
+  reg: {}
 
-domain-style = $ '<style cweb-dom>'
-default-style = $ '<style cweb-def>'
+  fire: (topic) ->
+    fns = @reg[topic]
+    len = if fns then fns.length else 0
+    while len--
+      fns[len].apply app, Array::slice.call(arguments, 1)
 
-# Make sure the style elements are the last in the document, for precedence
-# purposes, and that is always present on the page, somewhere.
-_in = set-interval ->
-  default-style.add domain-style .append-to document.documentElement
-  clear-interval _in if document.head and document.body
-, 200
+  on: (topic, fn) ->
+    (@reg[topic] or= []).push fn
+    [topic, fn]
+
+  off: (handle) ->
+    subs = @reg[handle[0]]
+    fn = handle[1]
+    len = subs ? subs.length : 0;
+    while len--
+      subs.splice(len, 1) if subs[len] is callback
+
+  init-styles: ->
+    app.domain-style = $ '<style cweb-dom>'
+    app.default-style = $ '<style cweb-def>'
+
+    # Make sure the style elements are the last in the document, for precedence
+    # purposes, and that is always present on the page, somewhere.
+    _in = set-interval ->
+      app.default-style.add app.domain-style .append-to document.documentElement
+      clear-interval _in if document.head and document.body
+    , 200
+
+var box
+
+app.init-styles!
+
+app.on \default-css, (css) -> app.default-style.text css
+app.on \domain-css, (css) -> app.domain-style.text css
 
 chrome.storage.sync.get [\!default, location.host], (data) ->
-  if data[\!default]
-    default-style.text data[\!default].css || ''
-  if data[location.host]
-    domain-style.text data[location.host].css || ''
+  if data[\!default]?.css
+    app.fire \default-css, data[\!default].css
+  if data[location.host]?.css
+    app.fire \domain-css, data[location.host].css
 
 setup = ->
   textareas = box.find \textarea
@@ -25,7 +51,7 @@ setup = ->
   new Behave textarea: js-input[0], tab-size: 2
 
   css-input.keydown -> set-timeout ->
-    domain-style.text css-input.val!
+    app.domain-style.text css-input.val!
 
   chrome.storage.sync.get [\!default, location.host], (data) ->
     if data[\!default]
