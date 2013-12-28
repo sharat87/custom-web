@@ -53,10 +53,8 @@ function deleteCurrent() {
 }
 
 var hashHandlers = {
-    settings: function () {
-
-    }
-}
+    settings: function () { }
+};
 
 $.fn.CodeMirror = function (mode) {
     return CodeMirror(this[0], {
