@@ -83,5 +83,5 @@ loadDomains(function () {
     if (location.hash)
         applyHash();
     else
-        location.hash = '#!default';
+        location.hash = '#!settings';
 });
