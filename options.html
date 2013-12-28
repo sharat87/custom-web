@@ -5,7 +5,9 @@
 <link rel=stylesheet href=options.css>
 
 <aside>
-  <header><b>Domains</b></header>
+  <h2 class=title>Custom Web</h2>
+  <a href='#!settings'>Settings</a>
+  <b class=title>Domains saved:</b>
   <ul id=domain-list></ul>
 </aside>
 
@@ -15,7 +17,7 @@
   {{/domains}}
 </script>
 
-<section>
+<section id=editor-box class=box>
 
   <label>
     <div class=title>CSS Styles to add</div>
@@ -35,6 +37,11 @@
 
   <p>Your code is automatically saved.</p>
 
+</section>
+
+<section id=settings-box class=box>
+  <h2>Custom Web Settings</h2>
+  <p>Nothing here yet!</p>
 </section>
 
 <script src=vendor/codemirror/codemirror.js></script>

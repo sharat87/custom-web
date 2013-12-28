@@ -9,14 +9,29 @@ function loadDomains(callback) {
 
 function applyHash() {
     currentHost = location.hash.substr(1);
-    $('#domain-list').find('.active').removeClass('active').end()
+    $('aside').find('.active').removeClass('active').end()
         .find('a[href="#' + currentHost + '"]').addClass('active');
-    chrome.storage.sync.get(currentHost, function (data) {
-        if (!data[currentHost]) return;
-        cssInput.setValue(data[currentHost].css || '');
-        jsInput.setValue(data[currentHost].js || '');
-        cssInput.focus();
-    });
+
+    var boxName;
+    if (currentHost[0] == '!' && currentHost != '!default') {
+        boxName = currentHost.substr(1);
+        hashHandlers[boxName]();
+    } else {
+        boxName = 'editor';
+        chrome.storage.sync.get(currentHost, function (data) {
+            if (data[currentHost]) {
+                cssInput.setValue(data[currentHost].css || '');
+                jsInput.setValue(data[currentHost].js || '');
+                cssInput.focus();
+            } else {
+                alert('Unknown host/route. Calling for a trampoline!');
+                location.hash = '#!default';
+            }
+        });
+    }
+
+    $('#' + boxName + '-box').show().siblings('.box').hide();
+
     if (currentHost == '!default')
         deleteBtn.attr({disabled: ''});
     else
@@ -35,6 +50,12 @@ function deleteCurrent() {
             location.hash = '#!default';
         });
     });
+}
+
+var hashHandlers = {
+    settings: function () {
+
+    }
 }
 
 $.fn.CodeMirror = function (mode) {
@@ -62,5 +83,5 @@ loadDomains(function () {
     if (location.hash)
         applyHash();
     else
-        location.hash = '!default';
+        location.hash = '#!default';
 });

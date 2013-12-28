@@ -15,28 +15,31 @@ aside {
     overflow: auto;
 }
 
-aside header {
+aside .title {
     padding: 3px 6px;
+    margin: 6px 0 0;
+    display: inline-block;
 }
 
 aside ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-aside li a {
+aside a {
     display: block;
     padding: 3px 6px;
     text-decoration: none;
     color: inherit;
 }
 
-aside li a:hover, aside li a.active {
+aside a:hover, aside a.active {
     background-color: #333;
     color: #EEE;
 }
 
-section {
+.box {
     width: calc(100% - 240px);
     height: 100%;
     padding: 6px 12px;
@@ -49,7 +52,7 @@ label {
     margin-bottom: 6px;
 }
 
-section .title {
+#editor-box .title {
     background: #222;
     color: #EEE;
     padding: 3px 6px;
