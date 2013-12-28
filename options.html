@@ -1,6 +1,7 @@
 <!doctype html>
 <meta charset=utf-8>
 <title>Custom Web Options</title>
+<link rel=stylesheet href=vendor/codemirror/codemirror.css>
 <link rel=stylesheet href=options.css>
 
 <aside>
@@ -17,13 +18,15 @@
 <section>
 
   <label>
-    <span>CSS Styles to add:</span>
-    <textarea id=css autofocus></textarea>
+    <div class=title>CSS Styles to add:</div>
+    <div id=css-input></div>
+    <!-- <textarea id=css autofocus></textarea> -->
   </label>
 
   <label>
-    <span>JavaScript code to run:</span>
-    <textarea id=js></textarea>
+    <div class=title>JavaScript code to run:</div>
+    <div id=js-input></div>
+    <!-- <textarea id=js></textarea> -->
   </label>
 
   <button id=del-btn>Delete customisations for this host</button>
@@ -35,6 +38,13 @@
   <p>Your code is automatically saved.</p>
 
 </section>
+
+<script src=vendor/codemirror/codemirror.js></script>
+<script src=vendor/codemirror/mode-javascript.js></script>
+<script src=vendor/codemirror/mode-css.js></script>
+<script src=vendor/codemirror/active-line.js></script>
+<script src=vendor/codemirror/closebrackets.js></script>
+<script src=vendor/codemirror/matchbrackets.js></script>
 
 <script src=vendor/mustache.js></script>
 <script src=vendor/jquery-2.0.3.min.js></script>
