@@ -1,0 +1,62 @@
+* { box-sizing: border-box; }
+
+html, body {
+    font-size: 18px;
+    margin: 0;
+    height: 100%;
+    color: #333;
+}
+
+aside {
+    width: 240px;
+    height: 100%;
+    float: left;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .4);
+    overflow: auto;
+}
+
+aside header {
+    padding: 3px 6px;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside li a {
+    display: block;
+    padding: 3px 6px;
+    text-decoration: none;
+    color: inherit;
+}
+
+aside li a:hover, aside li a.active {
+    background-color: #333;
+    color: #EEE;
+}
+
+section {
+    width: calc(100% - 240px);
+    height: 100%;
+    padding: 6px 12px;
+    float: left;
+    overflow: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+textarea {
+    display: block;
+    width: 540px;
+    height: 200px;
+    font-size: inherit;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
