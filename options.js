@@ -23,7 +23,6 @@ function applyHash() {
         deleteBtn.attr({disabled: ''});
     else
         deleteBtn.removeAttr('disabled');
-    console.info('load', currentHost);
 }
 
 function save() {
