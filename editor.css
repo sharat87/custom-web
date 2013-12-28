@@ -17,6 +17,12 @@
     box-sizing: border-box;
 }
 
+#custom-web-box .cweb-open-btn {
+    display: block;
+    padding: 3px 6px;
+    text-align: center;
+}
+
 #custom-web-box .cweb-t {
     color: inherit;
     font-family: serif;

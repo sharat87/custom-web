@@ -74,6 +74,13 @@ function setup() {
         }
     });
 
+    box.find('.cweb-open-btn').click(function (e) {
+        chrome.runtime.sendMessage({
+            open: chrome.extension.getURL('options.html#' + location.host)
+        });
+        e.preventDefault();
+    });
+
     cssInput.focus();
 }
 
