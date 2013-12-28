@@ -15,7 +15,7 @@
     "matches": ["<all_urls>"],
     "run_at": "document_start",
     "css": ["editor.css"],
-    "js": ["vendor/jquery-2.0.3.min.js", "vendor/behave.js", "editor.js"]
+    "js": ["vendor/jquery-2.0.3.min.js", "editor.js"]
   }],
   "icons": {
     "128": "icons/icon-128.png",

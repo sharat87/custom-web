@@ -20,9 +20,6 @@ function setup() {
         cssInput = box.find('.cweb-css-input'),
         jsInput = box.find('.cweb-js-input');
 
-    new Behave({textarea: cssInput[0], tabSize: 2});
-    new Behave({textarea: jsInput[0], tabSize: 2});
-
     cssInput.keydown(function () {
         setTimeout(function () {
             domainStyle.text(cssInput.val());
