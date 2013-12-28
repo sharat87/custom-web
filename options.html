@@ -1,29 +1,39 @@
 <!doctype html>
 <meta charset=utf-8>
 <title>Custom Web Options</title>
+<link rel=stylesheet href=options.css>
 
-<label>
-  <span>Default CSS:</span>
-  <textarea id=css autofocus></textarea>
-</label>
+<aside>
+  List of domains here
+  <ul id=domain-list></ul>
+</aside>
 
-<label>
-  <span>Default JS:</span>
-  <textarea id=js></textarea>
-</label>
+<script id=domain-list-tpl type=text/mustache>
+  {{#domains}}
+  <li><a href='#{{.}}'>{{.}}</a></li>
+  {{/domains}}
+</script>
 
-<p>The <tt>this</tt> object in the javascript code above is a plain javascript
-  object which is also used for running the host specific scripts. So you can
-  create reusable functions here.</p>
+<section>
 
-<p>Your code is automatically saved.</p>
+  <label>
+    <span>Default CSS:</span>
+    <textarea id=css autofocus></textarea>
+  </label>
 
-<style>
-  body { font-size: 18px; }
-  label { display: block; margin-bottom: 6px; }
-  textarea { display: block; width: 540px; height: 200px; font-size: inherit; }
-  button { font: inherit; cursor: pointer; }
-</style>
+  <label>
+    <span>Default JS:</span>
+    <textarea id=js></textarea>
+  </label>
 
-<script src=vendor/behave.js></script>
+  <p>The <tt>this</tt> object in the javascript code above is a plain javascript
+    object which is also used for running the host specific scripts. So you can
+    create reusable functions here.</p>
+
+  <p>Your code is automatically saved.</p>
+
+</section>
+
+<script src=vendor/mustache.js></script>
+<script src=vendor/jquery-2.0.3.min.js></script>
 <script src=options.js></script>
