@@ -24,5 +24,8 @@
   },
   "options_page": "options.html",
   "web_accessible_resources": ["editor.html", "vendor/jquery-2.0.3.min.js"],
+  "commands": {
+    "_execute_browser_action": {"suggested_key": {"default": "Ctrl+I"}}
+  },
   "manifest_version": 2
 }
