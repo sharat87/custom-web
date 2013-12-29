@@ -44,11 +44,35 @@ function save() {
 }
 
 function deleteCurrent() {
-    chrome.storage.sync.remove(currentHost, function () {
-        loadDomains(function () {
-            location.hash = '#!default';
+    var host = currentHost;
+    chrome.storage.sync.get(host, function (backup) {
+        chrome.storage.sync.remove(host, function () {
+            loadDomains(function () {
+                location.hash = '#!default';
+            });
+            showUndoOsd(function () {
+                chrome.storage.sync.set(backup);
+                loadDomains(function () {
+                    location.hash = '#' + host;
+                });
+            });
         });
     });
+}
+
+function showUndoOsd(callback) {
+    var duration = 10000;
+    $('#undo-osd')
+        .click(function () {
+            $(this).removeClass('active');
+            if (callback) callback();
+        })
+        .addClass('active')
+        .delay(duration)
+        .queue(function () { $(this).removeClass('active'); })
+        .find('.progress')
+        .css({width: '0%'})
+        .animate({width: '100%'}, duration - 200, 'linear');
 }
 
 $('#copy-export-btn').click(function () {

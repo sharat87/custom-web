@@ -109,3 +109,34 @@ button {
     font: inherit;
     cursor: pointer;
 }
+
+#undo-osd {
+    background-color: #A909E5;
+    color: #EEF;
+    border: none;
+    border-radius: none;
+    padding: 6px 12px;
+    font-size: 1.4em;
+    position: fixed;
+    min-width: 20%;
+    top: -50px;
+    right: 60px;
+    opacity: 0;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .6);
+    -webkit-transition: all .4s ease-out;
+}
+
+#undo-osd.active {
+    top: 42px;
+    opacity: 1;
+}
+
+#undo-osd .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: #F53C06;
+    display: block;
+    box-shadow: 0 0 2px #F53C06;
+}
