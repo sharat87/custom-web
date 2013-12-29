@@ -51,12 +51,31 @@ function deleteCurrent() {
     });
 }
 
-$('#copy-export-btn').click(function (e) {
+$('#copy-export-btn').click(function () {
     chrome.storage.sync.get(null, function (data) {
         var el = $('<input>').val(JSON.stringify(data)).appendTo(document.body).select();
         document.execCommand('Copy', false, null);
         el.remove();
         alert('Your export data has been copied to your clipboard.');
+    });
+});
+
+$('#download-export-btn').click(function () {
+    chrome.storage.sync.get(null, function (data) {
+        // FIXME: Doesn't work, as this is executed out of the download button
+        // event handler's line of execution.
+        $('<a>', {
+            href: URL.createObjectURL(new Blob([JSON.stringify(data)])),
+            download: 'custom-web-export.json'
+        }).appendTo(document.body).click();
+    });
+});
+
+$('#import-btn').click(function () {
+    var data = JSON.parse($('#import-data').val());
+    chrome.storage.sync.set(data, function () {
+        alert('Import finished. Reloading page.');
+        location.reload();
     });
 });
 

@@ -64,6 +64,13 @@ label {
     margin-bottom: 6px;
 }
 
+#ie-box textarea {
+    display: block;
+    width: 100%;
+    height: 80px;
+    margin-bottom: 12px;
+}
+
 #editor-box .title {
     padding: 3px 6px;
     font-size: 1.2em;
