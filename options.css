@@ -1,14 +1,14 @@
 * { box-sizing: border-box; }
 
 html, body {
-    font-size: 18px;
+    font-size: 14px;
     margin: 0;
     height: 100%;
     color: #333;
 }
 
 aside {
-    width: 240px;
+    width: 200px;
     height: 100%;
     float: left;
     box-shadow: 0 0 6px rgba(0, 0, 0, .4);
@@ -35,13 +35,23 @@ aside a {
     color: inherit;
 }
 
-aside a:hover, aside a.active {
-    background-color: #333;
-    color: #EEE;
+aside a:hover {
+    background-color: #FC420C;
+    color: #FEE;
+}
+
+aside a.active {
+    background-color: #F53C06;
+    color: #FEE;
+}
+
+aside > a:hover, aside > a.active {
+    background-color: #A909E5;
+    color: #EEF;
 }
 
 .box {
-    width: calc(100% - 240px);
+    width: calc(100% - 200px);
     height: 100%;
     padding: 6px 12px;
     float: left;
@@ -55,15 +65,31 @@ label {
 }
 
 #editor-box .title {
-    background: #222;
-    color: #EEE;
     padding: 3px 6px;
+    font-size: 1.2em;
+}
+
+#editor-box .css-editor .title {
+    background: #40C70D;
+    color: #EFE;
+}
+
+#css-input {
+    border-color: #40C70D;
+}
+
+#editor-box .js-editor .title {
+    background: #0BA8D6;
+    color: #EEF;
+}
+
+#js-input {
+    border-color: #0BA8D6;
 }
 
 #css-input, #js-input {
     border-width: 0 1px 1px;
     border-style: solid;
-    border-color: #222;
     border-radius: 0 0 3px 3px;
 }
 

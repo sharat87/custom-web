@@ -15,7 +15,8 @@ function applyHash() {
     var boxName;
     if (currentHost[0] == '!' && currentHost != '!default') {
         boxName = currentHost.substr(1);
-        hashHandlers[boxName]();
+        if (boxName in hashHandlers)
+            hashHandlers[boxName]();
     } else {
         boxName = 'editor';
         chrome.storage.sync.get(currentHost, function (data) {
@@ -53,7 +54,9 @@ function deleteCurrent() {
 }
 
 var hashHandlers = {
-    settings: function () { }
+    ie: function () {
+        console.log('Activate import/export');
+    }
 };
 
 $.fn.CodeMirror = function (mode) {
