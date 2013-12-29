@@ -82,6 +82,7 @@ $('#import-btn').click(function () {
 $.fn.CodeMirror = function (mode) {
     return CodeMirror(this[0], {
         mode: mode,
+        value: ' ', // Fix 0-height editor opening when no value is set initially
         lineNumbers: true,
         showCursorWhenSelecting: true,
         styleActiveLine: true,
