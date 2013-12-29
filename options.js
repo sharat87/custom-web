@@ -61,13 +61,13 @@ function deleteCurrent() {
 }
 
 function showUndoOsd(callback) {
-    var duration = 10000;
+    var duration = 4000;
     $('#undo-osd')
         .click(function () {
-            $(this).removeClass('active');
+            $(this).removeClass('active has-data');
             if (callback) callback();
         })
-        .addClass('active')
+        .addClass('active has-data')
         .delay(duration)
         .queue(function () { $(this).removeClass('active'); })
         .find('.progress')

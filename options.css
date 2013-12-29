@@ -126,17 +126,30 @@ button {
     -webkit-transition: all .4s ease-out;
 }
 
-#undo-osd.active {
+#undo-osd.has-data {
+    top: -20px;
+    opacity: .8;
+}
+
+#undo-osd.has-data:hover {
+    top: 0;
+    opacity: 1;
+}
+
+#undo-osd.has-data.active {
     top: 42px;
     opacity: 1;
 }
 
 #undo-osd .progress {
+    display: none;
+}
+
+#undo-osd.active .progress {
     position: absolute;
     top: 0;
     left: 0;
     height: 2px;
     background: #F53C06;
     display: block;
-    box-shadow: 0 0 2px #F53C06;
 }
