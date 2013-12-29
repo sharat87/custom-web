@@ -50,7 +50,7 @@ function deleteCurrent() {
             loadDomains(function () {
                 location.hash = '#!default';
             });
-            showUndoOsd(function () {
+            showUndoOsd(host, function () {
                 chrome.storage.sync.set(backup);
                 loadDomains(function () {
                     location.hash = '#' + host;
@@ -60,7 +60,7 @@ function deleteCurrent() {
     });
 }
 
-function showUndoOsd(callback) {
+function showUndoOsd(host, callback) {
     var duration = 4000;
     $('#undo-osd')
         .click(function () {
@@ -70,6 +70,7 @@ function showUndoOsd(callback) {
         .addClass('active has-data')
         .delay(duration)
         .queue(function () { $(this).removeClass('active'); })
+        .find('.host').text(host).end()
         .find('.progress')
         .css({width: '0%'})
         .animate({width: '100%'}, duration - 200, 'linear');
