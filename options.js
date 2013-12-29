@@ -15,8 +15,6 @@ function applyHash() {
     var boxName;
     if (currentHost[0] == '!' && currentHost != '!default') {
         boxName = currentHost.substr(1);
-        if (boxName in hashHandlers)
-            hashHandlers[boxName]();
     } else {
         boxName = 'editor';
         chrome.storage.sync.get(currentHost, function (data) {
@@ -53,11 +51,14 @@ function deleteCurrent() {
     });
 }
 
-var hashHandlers = {
-    ie: function () {
-        console.log('Activate import/export');
-    }
-};
+$('#copy-export-btn').click(function (e) {
+    chrome.storage.sync.get(null, function (data) {
+        var el = $('<input>').val(JSON.stringify(data)).appendTo(document.body).select();
+        document.execCommand('Copy', false, null);
+        el.remove();
+        alert('Your export data has been copied to your clipboard.');
+    });
+});
 
 $.fn.CodeMirror = function (mode) {
     return CodeMirror(this[0], {
