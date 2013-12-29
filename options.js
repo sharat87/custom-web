@@ -76,16 +76,16 @@ function showUndoOsd(host, callback) {
         .animate({width: '100%'}, duration - 200, 'linear');
 }
 
-$('#copy-export-btn').click(function () {
+function copyExport() {
     chrome.storage.sync.get(null, function (data) {
         var el = $('<input>').val(JSON.stringify(data)).appendTo(document.body).select();
         document.execCommand('Copy', false, null);
         el.remove();
         alert('Your export data has been copied to your clipboard.');
     });
-});
+}
 
-$('#download-export-btn').click(function () {
+function downloadExport() {
     chrome.storage.sync.get(null, function (data) {
         // FIXME: Doesn't work, as this is executed out of the download button
         // event handler's line of execution.
@@ -94,15 +94,15 @@ $('#download-export-btn').click(function () {
             download: 'custom-web-export.json'
         }).appendTo(document.body).click();
     });
-});
+}
 
-$('#import-btn').click(function () {
+function importData() {
     var data = JSON.parse($('#import-data').val());
     chrome.storage.sync.set(data, function () {
         alert('Import finished. Reloading page.');
         location.reload();
     });
-});
+}
 
 $.fn.CodeMirror = function (mode) {
     return CodeMirror(this[0], {
@@ -121,7 +121,10 @@ var currentHost,
     cssInput = $('#css-input').CodeMirror('css'),
     jsInput = $('#js-input').CodeMirror('javascript');
 
-deleteBtn.on('click', deleteCurrent);
+$('[clicked]').click(function (e) {
+    return window[this.getAttribute('clicked')].call(this, e);
+});
+
 $(window).on('hashchange', applyHash);
 cssInput.on('change', save);
 jsInput.on('change', save);

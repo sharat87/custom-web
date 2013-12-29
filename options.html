@@ -27,12 +27,12 @@
 
 <section id=ie-box class=box>
   <h2>Export</h2>
-  <button id=copy-export-btn>Copy export data</button>
-  <button id=download-export-btn disabled>Download export file</button>
+  <button clicked=copyExport>Copy export data</button>
+  <button clicked=downloadExport disabled>Download export file</button>
   <b><i>Please</i> make a backup of your data.</b>
   <h2>Import</h2>
   <textarea id=import-data placeholder='Paste your exported data here'></textarea>
-  <button id=import-btn>Import above data</button>
+  <button clicked=importData>Import above data</button>
   <b><i>Note:</i> Can only import data exported by the above system.</b>
 </section>
 
@@ -53,7 +53,7 @@
     <div id=js-input></div>
   </label>
 
-  <button id=del-btn>Delete customisations for this host</button>
+  <button id=del-btn clicked=deleteCurrent>Delete customisations for this host</button>
 
   <p>The <tt>this</tt> object in the javascript code above is a plain javascript
     object which is also used for running the host specific scripts. So you can
