@@ -125,6 +125,10 @@ $('[clicked]').click(function (e) {
     return window[this.getAttribute('clicked')].call(this, e);
 });
 
+$('button[href]').click(function (e) {
+    window.location = e.target.getAttribute('href');
+});
+
 $(window).on('hashchange', applyHash);
 cssInput.on('change', save);
 jsInput.on('change', save);

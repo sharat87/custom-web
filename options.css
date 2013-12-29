@@ -7,6 +7,26 @@ html, body {
     color: #333;
 }
 
+button {
+    border: none;
+    border-radius: 1px;
+    padding: 3px 12px;
+    font: inherit;
+    cursor: pointer;
+    background: #0BA8D6;
+    color: #EEF;
+    box-shadow: 0 2px 0 #00789B;
+}
+
+button:active {
+    box-shadow: none;
+}
+
+button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
 aside {
     width: 200px;
     height: 100%;
@@ -36,17 +56,17 @@ aside a {
 }
 
 aside a:hover {
-    background-color: #FC420C;
+    background: #FC420C;
     color: #FEE;
 }
 
 aside a.active {
-    background-color: #F53C06;
+    background: #F53C06;
     color: #FEE;
 }
 
 aside > a:hover, aside > a.active {
-    background-color: #A909E5;
+    background: #A909E5;
     color: #EEF;
 }
 
@@ -105,16 +125,23 @@ label {
     overflow-y: hidden;
 }
 
-button {
-    font: inherit;
-    cursor: pointer;
+#del-btn {
+    background: #F04;
+    box-shadow: 0 2px 0 #A02;
+    color: #FEE;
+}
+
+.doc-ln {
+    margin-left: 18px;
+    background: #F0B;
+    box-shadow: 0 2px 0 #A07;
+    color: #FEE;
 }
 
 #undo-osd {
-    background-color: #A909E5;
+    background: #A909E5;
     color: #EEF;
-    border: none;
-    border-radius: none;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
     padding: 6px 18px;
     font-size: 1.3em;
     position: fixed;
@@ -122,7 +149,6 @@ button {
     top: -50px;
     right: 60px;
     opacity: 0;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, .6);
     -webkit-transition: all .4s ease-out;
 }
 
