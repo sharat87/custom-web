@@ -4,7 +4,8 @@ html, body {
     font-size: 14px;
     margin: 0;
     height: 100%;
-    color: #333;
+    color: #586E75;
+    background: #FDF6E3;
 }
 
 button {
@@ -13,9 +14,9 @@ button {
     padding: 3px 12px;
     font: inherit;
     cursor: pointer;
-    background: #0BA8D6;
+    background: #268BD2;
     color: #EEF;
-    box-shadow: 0 2px 0 #00789B;
+    box-shadow: 0 1px 2px #268BD2;
 }
 
 button:active {
@@ -31,7 +32,7 @@ aside {
     width: 200px;
     height: 100%;
     float: left;
-    box-shadow: 0 0 6px rgba(0, 0, 0, .4);
+    box-shadow: 0 0 6px #93A1A1;
     padding-bottom: 24px;
     overflow: auto;
 }
@@ -56,18 +57,18 @@ aside a {
 }
 
 aside a:hover {
-    background: #FC420C;
-    color: #FEE;
+    background: #839496;
+    color: #FDF6E3;
 }
 
 aside a.active {
-    background: #F53C06;
-    color: #FEE;
+    background: #586E75;
+    color: #EEE8D5;
 }
 
-aside > a:hover, aside > a.active {
-    background: #A909E5;
-    color: #EEF;
+aside > a.active {
+    background: #CB4B16;
+    color: #FEE;
 }
 
 .box {
@@ -97,21 +98,21 @@ label {
 }
 
 #editor-box .css-editor .title {
-    background: #40C70D;
+    background: #859900;
     color: #EFE;
 }
 
 #css-input {
-    border-color: #40C70D;
+    border-color: #859900;
 }
 
 #editor-box .js-editor .title {
-    background: #0BA8D6;
+    background: #2AA198;
     color: #EEF;
 }
 
 #js-input {
-    border-color: #0BA8D6;
+    border-color: #2AA198;
 }
 
 #css-input, #js-input {
@@ -126,22 +127,22 @@ label {
 }
 
 #del-btn {
-    background: #F04;
-    box-shadow: 0 2px 0 #A02;
+    background: #DC322F;
+    box-shadow: 0 1px 2px #DC322F;
     color: #FEE;
 }
 
 .doc-ln {
     margin-left: 18px;
-    background: #F0B;
-    box-shadow: 0 2px 0 #A07;
-    color: #FEE;
+    background: #6C71C4;
+    color: #EEF;
+    box-shadow: 0 1px 2px #6C71C4;
 }
 
 #undo-osd {
-    background: #A909E5;
-    color: #EEF;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+    background: #D33682;
+    color: #FEE;
+    box-shadow: 1px 1px 3px #D33682;
     padding: 6px 18px;
     font-size: 1.3em;
     position: fixed;
@@ -165,17 +166,4 @@ label {
 #undo-osd.has-data.active {
     top: 42px;
     opacity: 1;
-}
-
-#undo-osd .progress {
-    display: none;
-}
-
-#undo-osd.active .progress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 2px;
-    background: #F53C06;
-    display: block;
 }
