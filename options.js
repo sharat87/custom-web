@@ -96,10 +96,26 @@ function downloadExport() {
 }
 
 function importData() {
-    var data = JSON.parse($('#import-data').val());
-    chrome.storage.sync.set(data, function () {
-        alert('Import finished. Reloading page.');
-        location.reload();
+    var host = currentHost;
+    chrome.storage.sync.get(null, function (backup) {
+        var data = JSON.parse($('#import-data').val());
+        if (Object.keys(data).length === 0) {
+            alert('Nothing to import yo!');
+            return;
+        }
+        chrome.storage.sync.set(data, function () {
+            loadDomains(function () {
+                location.hash = '#' + Object.keys(data)[0];
+            });
+            showUndoOsd('@import', function () {
+                chrome.storage.sync.clear(function () {
+                    chrome.storage.sync.set(backup);
+                    loadDomains(function () {
+                        location.hash = '#!ie';
+                    });
+                });
+            });
+        });
     });
 }
 
