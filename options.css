@@ -53,6 +53,11 @@ html, body {
     background: #FDF6E3;
 }
 
+h2, h3 {
+    color: #B58900;
+    margin: 12px 0 6px;
+}
+
 button, a.btn {
     border: none;
     border-radius: 1px;
@@ -96,14 +101,8 @@ aside {
 
 aside .title {
     padding: 3px 6px;
-    margin: 9px 0 6px;
-    color: #B58900;
     display: inline-block;
     width: 100%;
-}
-
-aside h2.title {
-    margin-top: 0;
 }
 
 aside ul {

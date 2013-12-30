@@ -10,10 +10,10 @@
   <a href='#!settings'>Settings</a>
   <a href='#!ie'>Import/Export</a>
   <a href='#!doc'>Documentation</a>
-  <b class=title>
+  <h3 class=title>
     Domains saved
     <button class=new-domain-btn title='Add a new domain' clicked=newDomain>+</button>
-  </b>
+  </h3>
   <ul id=domain-list></ul>
 </aside>
 
@@ -34,7 +34,8 @@
   <button clicked=copyExport>Copy export data</button>
   <a id=download-btn download=custom-web-export.json class=btn
     title='Download file "custom-web-export.json"'>Download export file</a>
-  <p><b><i>Please</i> make a backup of your data.</b></p>
+  <p><b><i>Please</i> make a backup of your data. Also, you may wish to test
+      your exported data with the import tool below.</b></p>
   <h2>Import</h2>
   <textarea id=import-data rows=10 placeholder='Paste your exported data here'
     spellcheck=false></textarea>
