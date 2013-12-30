@@ -46,30 +46,12 @@ function setup() {
         runJs(jsInput.val());
     });
 
-    function adjustSize(textareas) {
-        textareas.attr('rows', function () {
-            return Math.max(8, this.value.split('\n').length);
-        });
-    }
-
-    textareas.on('keydown', function (e) {
-        setTimeout(function () {
-            adjustSize($(e.target));
-        });
-    });
-
-    textareas.on('change', function () {
-        adjustSize($(this));
-    });
-
     chrome.storage.sync.get(['!default', location.host], function (data) {
         if (data['!default'])
             runJs(data['!default'].js || '');
         if (data[location.host]) {
             cssInput.val(data[location.host].css || '');
-            adjustSize(cssInput);
             jsInput.val(data[location.host].js || '');
-            adjustSize(jsInput);
             runJs(jsInput.val());
         }
     });
