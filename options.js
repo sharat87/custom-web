@@ -50,7 +50,7 @@ function deleteCurrent() {
             loadDomains(function () {
                 location.hash = '#!default';
             });
-            showUndoOsd(host, function () {
+            showUndoOsd('deleting ' + host, function () {
                 chrome.storage.sync.set(backup);
                 loadDomains(function () {
                     location.hash = '#' + host;
@@ -68,9 +68,12 @@ function showUndoOsd(host, callback) {
             $(this).removeClass('active has-data');
             if (callback) callback();
         })
+        .clearQueue()
         .addClass('active has-data')
         .delay(duration)
-        .queue(function () { $(this).removeClass('active'); })
+        .queue(function () {
+            $(this).removeClass('active');
+        })
         .find('.host')
         .text(host);
 }
@@ -107,7 +110,7 @@ function importData() {
             loadDomains(function () {
                 location.hash = '#' + Object.keys(data)[0];
             });
-            showUndoOsd('@import', function () {
+            showUndoOsd('Import', function () {
                 chrome.storage.sync.clear(function () {
                     chrome.storage.sync.set(backup);
                     loadDomains(function () {
