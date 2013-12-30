@@ -130,7 +130,8 @@ $.fn.CodeMirror = function (mode) {
         showCursorWhenSelecting: true,
         styleActiveLine: true,
         matchBrackets: true,
-        autoCloseBrackets: '(){}[]\'\'""'
+        autoCloseBrackets: '(){}[]\'\'""',
+        theme: 'solarized'
     });
 };
 

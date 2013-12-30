@@ -18,7 +18,6 @@ html, body {
     height: 100%;
     color: #586E75;
     background: #FDF6E3;
-    text-shadow: 0 0 1px rgba(0, 0, 0, .2);
 }
 
 button {
@@ -137,11 +136,7 @@ label {
 .CodeMirror {
     height: auto;
     overflow-y: hidden;
-    line-height: 1.2em;
-}
-
-.CodeMirror div.CodeMirror-cursor {
-    border-left-width: 2px;
+    font-size: 1.1em;
 }
 
 #del-btn {
