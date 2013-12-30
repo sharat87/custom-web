@@ -1,5 +1,17 @@
 * { box-sizing: border-box; }
 
+::-webkit-scrollbar {
+    background-color: #EEE8D5;
+    border: none;
+    width: 4px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #586E75;
+    border: none;
+}
+
 html, body {
     font-size: 14px;
     margin: 0;
