@@ -1,3 +1,29 @@
+@font-face {
+    font-family: Lato;
+    src: url('fonts/lato/Lato-Reg.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url('fonts/lato/Lato-RegIta.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url('fonts/lato/Lato-Bol.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url('fonts/lato/Lato-BolIta.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
 * { box-sizing: border-box; }
 
 ::-webkit-scrollbar {
@@ -18,7 +44,9 @@
 }
 
 html, body {
+    font-family: Lato;
     font-size: 14px;
+    font-weight: thin;
     margin: 0;
     height: 100%;
     color: #586E75;
@@ -114,8 +142,14 @@ label {
     margin-bottom: 12px;
     background: transparent;
     color: inherit;
-    font: inherit;
+    border: thin solid #93A1A1;
+    box-shadow: inset 0 0 6px #93A1A1;
+}
+
+#ie-box textarea:focus {
     border-color: #002B36;
+    background: #EEE8D5;
+    outline: none;
 }
 
 #editor-box .title {

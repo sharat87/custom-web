@@ -1,0 +1,79 @@
+/* Solarized: http://ethanschoonover.com/solarized */
+.cm-s-solarized {
+    background-color: #FDF6E3;
+    color: #657B83;
+    line-height: 1.3em;
+}
+
+.cm-s-solarized .cm-keyword { color: #CB4B16; }
+.cm-s-solarized .cm-atom { color: #D33682; }
+.cm-s-solarized .cm-number { color: #D33682; }
+.cm-s-solarized .cm-def { color: #2AA198; }
+
+.cm-s-solarized .cm-variable { color: #268BD2; }
+.cm-s-solarized .cm-variable-2 { color: #B58900; }
+.cm-s-solarized .cm-variable-3 { color: #6C71C4; }
+
+.cm-s-solarized .cm-property { color: #2AA198; }
+.cm-s-solarized .cm-operator {color: #6C71C4;}
+
+.cm-s-solarized .cm-comment { color: #586E75; font-style:italic; }
+
+.cm-s-solarized .cm-string { color: #859900; }
+.cm-s-solarized .cm-string-2 { color: #B58900; }
+
+.cm-s-solarized .cm-meta { color: #859900; }
+.cm-s-solarized .cm-qualifier { color: #B58900; }
+.cm-s-solarized .cm-builtin { color: #D33682; }
+.cm-s-solarized .cm-bracket { color: #CB4B16; }
+.cm-s-solarized .CodeMirror-matchingbracket { color: #859900; }
+.cm-s-solarized .CodeMirror-nonmatchingbracket { color: #DC322F; }
+.cm-s-solarized .cm-tag { color: #93A1A1; }
+.cm-s-solarized .cm-attribute {  color: #2AA198; }
+.cm-s-solarized .cm-header { color: #586E75; }
+.cm-s-solarized .cm-quote { color: #93A1A1; }
+.cm-s-solarized .cm-hr {
+    color: transparent;
+    border-top: 1px solid #586E75;
+    display: block;
+}
+.cm-s-solarized .cm-link { color: #93A1A1; cursor: pointer; }
+.cm-s-solarized .cm-special { color: #6C71C4; }
+.cm-s-solarized .cm-em {
+    color: #999;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+.cm-s-solarized .cm-strong { color: #EEE; }
+.cm-s-solarized .cm-tab:before {
+    /* content: '▶'; */
+    color: #93A1A1;
+}
+.cm-s-solarized .cm-error,
+.cm-s-solarized .cm-invalidchar {
+    color: #586E75;
+    border-bottom: 1px dotted #DC322F;
+}
+
+.cm-s-solarized .CodeMirror-selected {
+    background: #DBD4BE;
+}
+
+.cm-s-solarized .CodeMirror-gutters {
+    padding: 0 6px 0 0;
+    border-right: none;
+}
+
+.cm-s-solarized .CodeMirror-gutters,
+.cm-s-solarized .CodeMirror-activeline-background {
+    background-color: #EEE8D5;
+}
+
+.cm-s-solarized .CodeMirror-linenumber,
+.cm-s-solarized .CodeMirror-gutter .CodeMirror-gutter-text {
+    color: #586E75;
+}
+
+.cm-s-solarized .CodeMirror-lines .CodeMirror-cursor {
+    border-left: 2px solid #819090;
+}
