@@ -178,3 +178,8 @@ loadDomains(function () {
     else
         location.hash = '#!settings';
 });
+
+$.get(chrome.runtime.getURL('README.md'), function (data) {
+    $('#doc-loading-msg')
+        .replaceWith(markdown.toHTML(data.replace('$jq-version', $.fn.jquery)));
+});
