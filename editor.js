@@ -20,19 +20,23 @@ function setup() {
         cssInput = box.find('.cweb-css-input'),
         jsInput = box.find('.cweb-js-input');
 
-    cssInput.keydown(function () {
+    textareas.on('keydown change', function () {
         setTimeout(function () {
             domainStyle.text(cssInput.val());
+            var data = {};
+            data[location.host] = {
+                css: cssInput.val() || '',
+                js: jsInput.val() || ''
+            };
+            chrome.storage.sync.set(data);
         });
     });
 
-    textareas.on('keyup change', function () {
-        var data = {};
-        data[location.host] = {
-            css: cssInput.val() || '',
-            js: jsInput.val() || ''
-        };
-        return chrome.storage.sync.set(data);
+    chrome.storage.onChanged.addListener(function (changes) {
+        if (location.host in changes)
+            cssInput.val(changes[location.host].newValue.css).change();
+        if ('!default' in changes)
+            defaultStyle.text(changes['!default'].newValue.css);
     });
 
     box.find('.cweb-move-btn').click(function () {
