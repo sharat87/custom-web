@@ -140,6 +140,8 @@ var currentHost,
     cssInput = $('#css-input').CodeMirror('css'),
     jsInput = $('#js-input').CodeMirror('javascript');
 
+$('.version').text(chrome.app.getDetails().version);
+
 $('[clicked]').click(function (e) {
     return window[this.getAttribute('clicked')].call(this, e);
 });
