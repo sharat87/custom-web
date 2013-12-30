@@ -88,6 +88,7 @@ aside .title {
     margin: 9px 0 6px;
     color: #B58900;
     display: inline-block;
+    width: 100%;
 }
 
 aside h2.title {
@@ -120,6 +121,24 @@ aside a.active {
 aside > a.active {
     background: #CB4B16;
     color: #FEE;
+}
+
+.new-domain-btn {
+    float: right;
+    margin-top: -3px;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: 2px solid #B58900;
+    color: #B58900;
+    border-radius: 50%;
+    box-shadow: none;
+    padding: 0;
+}
+
+.new-domain-btn:hover {
+    background: #B58900;
+    color: #FDF6E3;
 }
 
 .box {
