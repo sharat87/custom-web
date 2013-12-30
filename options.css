@@ -20,6 +20,10 @@ html, body {
     background: #FDF6E3;
 }
 
+img[alt='logo'] {
+    vertical-align: middle;
+}
+
 button {
     border: none;
     border-radius: 1px;
@@ -51,8 +55,15 @@ aside {
 
 aside .title {
     padding: 3px 6px;
-    margin: 6px 0 0;
+    margin: 9px 0 6px;
+    background: #B58900;
+    color: #FDF6E3;
     display: inline-block;
+    width: 100%;
+}
+
+aside h2.title {
+    margin-top: 0;
 }
 
 aside ul {
@@ -86,7 +97,7 @@ aside > a.active {
 .box {
     width: calc(100% - 200px);
     height: 100%;
-    padding: 6px 12px;
+    padding: 6px 12px 48px;
     float: left;
     display: none;
     overflow: auto;
