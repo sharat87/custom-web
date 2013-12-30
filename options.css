@@ -36,8 +36,9 @@ button:active {
 }
 
 button:disabled {
-    opacity: .6;
+    opacity: .4;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 aside {
