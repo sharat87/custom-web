@@ -63,6 +63,7 @@ function deleteCurrent() {
 function newDomain() {
     var host = prompt('Enter the host name. Eg., `google.com` or `finance.yahoo.com`.', 'finance.yahoo.com'),
         data = {};
+    if (!host) return;
     data[host] = {css: '', js: ''};
     chrome.storage.sync.set(data, function () {
         loadDomains(function () {
