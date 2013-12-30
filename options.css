@@ -20,10 +20,6 @@ html, body {
     background: #FDF6E3;
 }
 
-img[alt='logo'] {
-    vertical-align: middle;
-}
-
 button {
     border: none;
     border-radius: 1px;
@@ -56,10 +52,8 @@ aside {
 aside .title {
     padding: 3px 6px;
     margin: 9px 0 6px;
-    background: #B58900;
-    color: #FDF6E3;
+    color: #B58900;
     display: inline-block;
-    width: 100%;
 }
 
 aside h2.title {
@@ -148,6 +142,19 @@ label {
     height: auto;
     overflow-y: hidden;
     font-size: 1.1em;
+}
+
+#css-input .CodeMirror-gutters {
+    background: #859900;
+}
+
+#js-input .CodeMirror-gutters {
+    background: #2AA198;
+}
+
+#css-input .CodeMirror-linenumber,
+#js-input .CodeMirror-linenumber {
+    color: #FDF6E3;
 }
 
 #del-btn {
