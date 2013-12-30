@@ -98,17 +98,6 @@ function copyExport() {
     });
 }
 
-function downloadExport() {
-    chrome.storage.sync.get(null, function (data) {
-        // FIXME: Doesn't work, as this is executed out of the download button
-        // event handler's line of execution.
-        $('<a>', {
-            href: URL.createObjectURL(new Blob([JSON.stringify(data)])),
-            download: 'custom-web-export.json'
-        }).appendTo(document.body).click();
-    });
-}
-
 function importData() {
     var host = currentHost;
     chrome.storage.sync.get(null, function (backup) {
@@ -133,6 +122,12 @@ function importData() {
     });
 }
 
+function updateDownloadBlob() {
+    chrome.storage.sync.get(null, function (data) {
+        $('#download-btn').attr('href', URL.createObjectURL(new Blob([JSON.stringify(data)])));
+    });
+}
+
 $.fn.CodeMirror = function (mode) {
     return CodeMirror(this[0], {
         mode: mode,
@@ -152,6 +147,9 @@ var currentHost,
     jsInput = $('#js-input').CodeMirror('javascript');
 
 $('.version').text(chrome.app.getDetails().version);
+
+chrome.storage.onChanged.addListener(updateDownloadBlob);
+updateDownloadBlob();
 
 $('[clicked]').click(function (e) {
     return window[this.getAttribute('clicked')].call(this, e);

@@ -32,13 +32,14 @@
 <section id=ie-box class=box>
   <h2>Export</h2>
   <button clicked=copyExport>Copy export data</button>
-  <button clicked=downloadExport disabled>Download export file</button>
-  <b><i>Please</i> make a backup of your data.</b>
+  <a id=download-btn download=custom-web-export.json class=btn
+    title='Download file "custom-web-export.json"'>Download export file</a>
+  <p><b><i>Please</i> make a backup of your data.</b></p>
   <h2>Import</h2>
   <textarea id=import-data rows=10 placeholder='Paste your exported data here'
     spellcheck=false></textarea>
   <button clicked=importData>Import above data</button>
-  <b><i>Note:</i> Can only import data exported by the above system.</b>
+  <p><b><i>Note:</i> Can only import data exported by the above system.</b></p>
 </section>
 
 <section id=doc-box class=box>
