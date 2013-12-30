@@ -1,8 +1,8 @@
 function loadDomains(callback) {
     chrome.storage.sync.get(null, function (data) {
-        $('#domain-list').html(Mustache.render($('#domain-list-tpl').text(), {
-            domains: Object.keys(data)
-        }));
+        var ul = $('#domain-list').empty(), keys = Object.keys(data);
+        for (var i = keys.length; i-- > 0;)
+            ul.prepend('<li><a href="#' + keys[i] + '">' + keys[i] + '</a></li>');
         if (callback) callback();
     });
 }
