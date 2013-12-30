@@ -80,6 +80,11 @@ a.btn {
     display: inline-block;
 }
 
+input[type='checkbox'] {
+    margin: 0;
+    vertical-align: middle;
+}
+
 aside {
     width: 200px;
     height: 100%;
@@ -175,6 +180,10 @@ label {
     border-color: #002B36;
     background: #EEE8D5;
     outline: none;
+}
+
+#clear-import-check:checked + span {
+    color: #DC322F;
 }
 
 #editor-box .title {

@@ -101,24 +101,36 @@ function copyExport() {
 function importData() {
     var host = currentHost;
     chrome.storage.sync.get(null, function (backup) {
-        var data = JSON.parse($('#import-data').val());
+        var data = JSON.parse($('#import-data').val()),
+            clear = $('#clear-import-check').is(':checked');
+
         if (Object.keys(data).length === 0) {
             alert('Nothing to import yo!');
             return;
         }
-        chrome.storage.sync.set(data, function () {
-            loadDomains(function () {
-                location.hash = '#' + Object.keys(data)[0];
+
+        if (clear)
+            chrome.storage.sync.clear(function () {
+                doImport();
             });
-            showUndoOsd('Import', function () {
-                chrome.storage.sync.clear(function () {
-                    chrome.storage.sync.set(backup);
-                    loadDomains(function () {
-                        location.hash = '#!ie';
+        else
+            doImport();
+
+        function doImport() {
+            chrome.storage.sync.set(data, function () {
+                loadDomains(function () {
+                    location.hash = '#' + Object.keys(data)[0];
+                });
+                showUndoOsd('Import', function () {
+                    chrome.storage.sync.clear(function () {
+                        chrome.storage.sync.set(backup);
+                        loadDomains(function () {
+                            location.hash = '#!ie';
+                        });
                     });
                 });
             });
-        });
+        }
     });
 }
 
