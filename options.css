@@ -27,14 +27,14 @@
 * { box-sizing: border-box; }
 
 ::-webkit-scrollbar {
-    background-color: #EEE8D5;
+    background: #EEE8D5;
     border: none;
     width: 4px;
     height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #586E75;
+    background: #586E75;
     border: none;
 }
 
@@ -50,7 +50,7 @@ html, body {
     margin: 0;
     height: 100%;
     color: #586E75;
-    background: #FDF6E3;
+    background-color: #FDF6E3;
 }
 
 h1, h2, h3 {
@@ -60,11 +60,12 @@ h1, h2, h3 {
 
 button, a.btn {
     border: none;
-    border-radius: 1px;
+    border-radius: 6px 1px;
     padding: 3px 12px;
     font: inherit;
     cursor: pointer;
-    background: #268BD2;
+    background-color: #268BD2;
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, .15));
     color: #EEF;
     box-shadow: 0 1px 2px #268BD2;
     margin: 0 6px;
@@ -72,6 +73,7 @@ button, a.btn {
 
 button:active, a.btn:active {
     box-shadow: none;
+    background-image: none;
 }
 
 button:disabled {
@@ -123,17 +125,17 @@ aside a {
 }
 
 aside a:hover {
-    background: #839496;
+    background-color: #839496;
     color: #FDF6E3;
 }
 
 aside a.active {
-    background: #586E75;
+    background-color: #586E75;
     color: #EEE8D5;
 }
 
 aside > a.active {
-    background: #CB4B16;
+    background-color: #CB4B16;
     color: #FEE;
 }
 
@@ -151,7 +153,7 @@ aside > a.active {
 }
 
 .new-domain-btn:hover {
-    background: #B58900;
+    background-color: #B58900;
     color: #FDF6E3;
 }
 
@@ -181,7 +183,7 @@ label {
 
 #ie-box textarea:focus {
     border-color: #002B36;
-    background: #EEE8D5;
+    background-color: #EEE8D5;
     outline: none;
 }
 
@@ -195,7 +197,7 @@ label {
 }
 
 #editor-box .css-editor .title {
-    background: #859900;
+    background-color: #859900;
     color: #EFE;
 }
 
@@ -204,7 +206,7 @@ label {
 }
 
 #editor-box .js-editor .title {
-    background: #2AA198;
+    background-color: #2AA198;
     color: #EEF;
 }
 
@@ -225,11 +227,11 @@ label {
 }
 
 #css-input .CodeMirror-gutters {
-    background: #859900;
+    background-color: #859900;
 }
 
 #js-input .CodeMirror-gutters {
-    background: #2AA198;
+    background-color: #2AA198;
 }
 
 #css-input .CodeMirror-linenumber,
@@ -238,20 +240,20 @@ label {
 }
 
 #del-btn {
-    background: #DC322F;
+    background-color: #DC322F;
     box-shadow: 0 1px 2px #DC322F;
     color: #FEE;
 }
 
 #doc-ln {
     margin-left: 18px;
-    background: #6C71C4;
+    background-color: #6C71C4;
     color: #EEF;
     box-shadow: 0 1px 2px #6C71C4;
 }
 
 #undo-osd {
-    background: #D33682;
+    background-color: #D33682;
     color: #FEE;
     box-shadow: 1px 1px 3px #D33682;
     padding: 6px 18px;
