@@ -18,9 +18,16 @@ specific entry in the options page will be run. The `this` object in both the
 defined in the default script under the `this` object and be accessed in the
 domain specific scripts.
 
+## About
+
+I am Shrikant Sharat Kandula, from India. Find me on [the web](http://sharats.me),
+[twitter](https://twitter.com/sharat87) and [github](https://github.com/sharat87).
+
 ## License
 
-Custom Web is released with the [MIT License](http://mitl.sharats.me).
+Custom Web is released with the [MIT License](http://mitl.sharats.me). You can
+access the source on the [github project
+page](https://github.com/sharat87/custom-web).
 
 ## Credits
 
