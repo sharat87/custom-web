@@ -99,6 +99,10 @@ aside {
     overflow: auto;
 }
 
+.version:before {
+    content: 'v';
+}
+
 aside .title {
     padding: 3px 6px;
     display: inline-block;
