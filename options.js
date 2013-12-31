@@ -92,7 +92,8 @@ function showUndoOsd(host, callback) {
 
 function copyExport() {
     chrome.storage.sync.get(null, function (data) {
-        var el = $('<input>').val(JSON.stringify(data)).appendTo(document.body).select();
+        var el = $('<input>').val(JSON.stringify({sync: data}))
+            .appendTo(document.body).select();
         document.execCommand('Copy', false, null);
         el.remove();
         alert('Your export data has been copied to your clipboard.');
@@ -102,7 +103,7 @@ function copyExport() {
 function importData() {
     var host = currentHost;
     chrome.storage.sync.get(null, function (backup) {
-        var data = JSON.parse($('#import-data').val()),
+        var data = JSON.parse($('#import-data').val()).sync,
             clear = $('#clear-import-check').is(':checked');
 
         if (Object.keys(data).length === 0) {
@@ -137,7 +138,8 @@ function importData() {
 
 function updateDownloadBlob() {
     chrome.storage.sync.get(null, function (data) {
-        $('#download-btn').attr('href', URL.createObjectURL(new Blob([JSON.stringify(data)])));
+        $('#download-btn')
+            .attr('href', URL.createObjectURL(new Blob([JSON.stringify({sync: data})])));
     });
 }
 

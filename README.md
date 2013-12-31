@@ -32,9 +32,10 @@ page](https://github.com/sharat87/custom-web).
 ## Credits
 
 This project wouldn't been possible without these fantastic projects by awesome
-folks.
+folks. Thanks!
 
 - jQuery (John Resig)
+- CodeMirror (Marijn Haverbeke)
 - Solarized (Ethan Schoonover)
 
 If you don't like Custom Web, there are a few alternatives, some of which have
