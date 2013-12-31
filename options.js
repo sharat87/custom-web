@@ -1,5 +1,5 @@
 function loadDomains(callback) {
-    chrome.storage.sync.get(null, function (data) {
+    chrome.storage.local.get(null, function (data) {
         var ul = $('#domain-list').empty(), keys = Object.keys(data);
         for (var i = keys.length; i-- > 0;)
             ul.prepend('<li><a href="#' + keys[i] + '">' + keys[i] + '</a></li>');
@@ -17,7 +17,7 @@ function applyHash() {
         boxName = currentHost.substr(1);
     } else {
         boxName = 'editor';
-        chrome.storage.sync.get(currentHost, function (data) {
+        chrome.storage.local.get(currentHost, function (data) {
             if (data[currentHost]) {
                 cssInput.setValue(data[currentHost].css || '');
                 jsInput.setValue(data[currentHost].js || '');
@@ -40,18 +40,18 @@ function applyHash() {
 function save() {
     var data = {};
     data[currentHost] = {css: cssInput.getValue(), js: jsInput.getValue()};
-    chrome.storage.sync.set(data);
+    chrome.storage.local.set(data);
 }
 
 function deleteCurrent() {
     var host = currentHost;
-    chrome.storage.sync.get(host, function (backup) {
-        chrome.storage.sync.remove(host, function () {
+    chrome.storage.local.get(host, function (backup) {
+        chrome.storage.local.remove(host, function () {
             loadDomains(function () {
                 location.hash = '#!default';
             });
             showUndoOsd('deleting ' + host, function () {
-                chrome.storage.sync.set(backup);
+                chrome.storage.local.set(backup);
                 loadDomains(function () {
                     location.hash = '#' + host;
                 });
@@ -65,7 +65,7 @@ function newDomain() {
         data = {};
     if (!host) return;
     data[host] = {css: '', js: ''};
-    chrome.storage.sync.set(data, function () {
+    chrome.storage.local.set(data, function () {
         loadDomains(function () {
             location.hash = '#' + host;
         });
@@ -91,8 +91,8 @@ function showUndoOsd(host, callback) {
 }
 
 function copyExport() {
-    chrome.storage.sync.get(null, function (data) {
-        var el = $('<input>').val(JSON.stringify({sync: data}))
+    chrome.storage.local.get(null, function (data) {
+        var el = $('<input>').val(JSON.stringify({codes: data}))
             .appendTo(document.body).select();
         document.execCommand('Copy', false, null);
         el.remove();
@@ -102,8 +102,8 @@ function copyExport() {
 
 function importData() {
     var host = currentHost;
-    chrome.storage.sync.get(null, function (backup) {
-        var data = JSON.parse($('#import-data').val()).sync,
+    chrome.storage.local.get(null, function (backup) {
+        var data = JSON.parse($('#import-data').val()).codes,
             clear = $('#clear-import-check').is(':checked');
 
         if (Object.keys(data).length === 0) {
@@ -112,20 +112,20 @@ function importData() {
         }
 
         if (clear)
-            chrome.storage.sync.clear(function () {
+            chrome.storage.local.clear(function () {
                 doImport();
             });
         else
             doImport();
 
         function doImport() {
-            chrome.storage.sync.set(data, function () {
+            chrome.storage.local.set(data, function () {
                 loadDomains(function () {
                     location.hash = '#' + Object.keys(data)[0];
                 });
                 showUndoOsd('Import', function () {
-                    chrome.storage.sync.clear(function () {
-                        chrome.storage.sync.set(backup);
+                    chrome.storage.local.clear(function () {
+                        chrome.storage.local.set(backup);
                         loadDomains(function () {
                             location.hash = '#!ie';
                         });
@@ -137,9 +137,9 @@ function importData() {
 }
 
 function updateDownloadBlob() {
-    chrome.storage.sync.get(null, function (data) {
+    chrome.storage.local.get(null, function (data) {
         $('#download-btn')
-            .attr('href', URL.createObjectURL(new Blob([JSON.stringify({sync: data})])));
+            .attr('href', URL.createObjectURL(new Blob([JSON.stringify({codes: data})])));
     });
 }
 

@@ -21,4 +21,4 @@ for fname in chain(*(glob(os.path.expanduser(pat)) for pat in patterns)):
     with open(fname) as f:
         data[domain][ext[1:]] = f.read()
 
-print(json.dumps({'sync': data}, indent=4, separators=(',', ': '), sort_keys=True))
+print(json.dumps({'codes': data}, indent=4, separators=(',', ': '), sort_keys=True))

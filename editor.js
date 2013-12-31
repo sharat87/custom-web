@@ -8,7 +8,7 @@ var _in = setInterval(function () {
         clearInterval(_in);
 }, 200);
 
-chrome.storage.sync.get(['!default', location.host], function (data) {
+chrome.storage.local.get(['!default', location.host], function (data) {
     if (data['!default'])
         defaultStyle.text(data['!default'].css || '');
     if (data[location.host])
@@ -28,7 +28,7 @@ function setup() {
                 css: cssInput.val() || '',
                 js: jsInput.val() || ''
             };
-            chrome.storage.sync.set(data);
+            chrome.storage.local.set(data);
         });
     });
 
@@ -50,7 +50,7 @@ function setup() {
         runJs(jsInput.val());
     });
 
-    chrome.storage.sync.get(['!default', location.host], function (data) {
+    chrome.storage.local.get(['!default', location.host], function (data) {
         if (data['!default'])
             runJs(data['!default'].js || '');
         if (data[location.host]) {

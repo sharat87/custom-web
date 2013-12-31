@@ -18,6 +18,15 @@ specific entry in the options page will be run. The `this` object in both the
 defined in the default script under the `this` object and be accessed in the
 domain specific scripts.
 
+## Your code is *not* synced
+
+To sync your scripts and styles, the `chrome.storage.sync` store could be
+utilized, but its [size
+limitations](http://developer.chrome.com/extensions/storage.html#property-sync)
+make it fairly easy to hit the limits.  However using `chrome.storage.local`
+with the `unlimitedStorage` permission, resolves this, but loses syncing. You
+are advised to regularly export your data and keep a backup handy.
+
 ## About
 
 I am Shrikant Sharat Kandula, from India. Find me on [the web](http://sharats.me),
