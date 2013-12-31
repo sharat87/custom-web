@@ -1,4 +1,4 @@
-# About Custom Web
+# Custom Web
 
 Custom Web is a chrome extension that allows users to write their own JS and CSS
 to be added to any and all websites. The javascript executed has jQuery

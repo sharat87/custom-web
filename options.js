@@ -180,6 +180,5 @@ loadDomains(function () {
 });
 
 $.get(chrome.runtime.getURL('README.md'), function (data) {
-    $('#doc-loading-msg')
-        .replaceWith(markdown.toHTML(data.replace('$jq-version', $.fn.jquery)));
+    $('#doc-box').html(markdown.toHTML(data.replace('$jq-version', $.fn.jquery)));
 });
