@@ -149,7 +149,7 @@ aside > a.active {
     color: #B58900;
     border-radius: 50%;
     box-shadow: none;
-    padding: 0;
+    padding: 0 0 1px;
 }
 
 .new-domain-btn:hover {
