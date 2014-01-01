@@ -140,6 +140,20 @@ function updateDownloadBlob() {
     });
 }
 
+function deleteAll() {
+    if (prompt('This will delete all CSS and JS for all domains, include `!default`.' +
+               ' If you are sure, enter SURE in capitals below:') != 'SURE')
+        return;
+    chrome.storage.local.get(null, function (backup) {
+        chrome.storage.local.clear(function () {
+            loadDomains();
+            showUndoOsd('Purge', function () {
+                chrome.storage.local.set(backup, loadDomains);
+            });
+        });
+    });
+}
+
 $.fn.CodeMirror = function (mode) {
     return CodeMirror(this[0], {
         mode: mode,

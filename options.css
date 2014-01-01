@@ -239,10 +239,18 @@ label {
     color: #FDF6E3;
 }
 
-#del-btn {
+#del-btn, .del-all-btn {
     background-color: #DC322F;
     box-shadow: 0 1px 2px #DC322F;
     color: #FEE;
+}
+
+.del-all-btn {
+    -webkit-transform: scale(.8);
+}
+
+.del-all-btn:hover {
+    box-shadow: 0 0 40px #DC322F;
 }
 
 #doc-ln {
