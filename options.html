@@ -31,12 +31,13 @@
 
 <section id=ie-box class=box>
   <h2>Export</h2>
-  <button clicked=copyExport>Copy export data</button>
+  <button clicked=exportClipboard>Export to clipboard</button>
   <a id=download-btn download=custom-web-export.json class=btn
     title='Download file "custom-web-export.json"'>Download export file</a>
   <p><b><i>Please</i> make a backup of your data. Also, you may wish to test
       your exported data with the import tool below.</b></p>
   <h2>Import</h2>
+  <button clicked=importClipboard>Import from clipboard</button>
   <textarea id=import-data rows=10 placeholder='Paste your exported data here'
     spellcheck=false></textarea>
   <label>

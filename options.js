@@ -90,7 +90,7 @@ function showUndoOsd(host, callback) {
         .text(host);
 }
 
-function copyExport() {
+function exportClipboard() {
     chrome.storage.local.get(null, function (data) {
         var el = $('<input>').val(JSON.stringify({codes: data}))
             .appendTo(document.body).select();
@@ -100,21 +100,27 @@ function copyExport() {
     });
 }
 
-function importData() {
-    var host = currentHost;
+function importClipboard() {
+    var el = $('<input>').appendTo(document.body).focus();
+    document.execCommand('Paste');
+    importData(el.val());
+    el.remove();
+}
+
+function importData(data) {
+    data = JSON.parse(data).codes;
+
+    if (Object.keys(data).length === 0) {
+        alert('Nothing to import yo!');
+        return;
+    }
+
+    var host = currentHost,
+        clear = $('#clear-import-check').is(':checked');
+
     chrome.storage.local.get(null, function (backup) {
-        var data = JSON.parse($('#import-data').val()).codes,
-            clear = $('#clear-import-check').is(':checked');
-
-        if (Object.keys(data).length === 0) {
-            alert('Nothing to import yo!');
-            return;
-        }
-
         if (clear)
-            chrome.storage.local.clear(function () {
-                doImport();
-            });
+            chrome.storage.local.clear(doImport);
         else
             doImport();
 
