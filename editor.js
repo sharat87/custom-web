@@ -34,6 +34,7 @@ function setup() {
 
     chrome.storage.onChanged.addListener(function (changes) {
         if (location.host in changes) {
+            jsInput.val(changes[location.host].newValue.js);
             cssInput.val(changes[location.host].newValue.css);
             domainStyle.text(cssInput.val());
         }
