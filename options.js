@@ -43,7 +43,12 @@ function applyHash() {
 function save() {
     var data = {};
     data[currentHost] = {css: cssInput.getValue(), js: jsInput.getValue()};
-    chrome.storage.local.set(data);
+    chrome.storage.local.set(data, checkLastError);
+}
+
+function checkLastError() {
+    if (chrome.runtime.lastError)
+        console.error('Chrome Runtime Error: ', chrome.runtime.lastError.message);
 }
 
 function deleteCurrent() {

@@ -33,8 +33,10 @@ function setup() {
     });
 
     chrome.storage.onChanged.addListener(function (changes) {
-        if (location.host in changes)
-            cssInput.val(changes[location.host].newValue.css).change();
+        if (location.host in changes) {
+            cssInput.val(changes[location.host].newValue.css);
+            domainStyle.text(cssInput.val());
+        }
         if ('!default' in changes)
             defaultStyle.text(changes['!default'].newValue.css);
     });
