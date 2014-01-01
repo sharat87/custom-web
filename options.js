@@ -23,13 +23,16 @@ function applyHash() {
                 jsInput.setValue(data[currentHost].js || '');
                 cssInput.focus();
             } else {
-                alert('Unknown host/route. Calling for a trampoline!');
-                location.hash = '#!default';
+                routeError('#!default');
             }
         });
     }
 
-    $('#' + boxName + '-box').show().siblings('.box').hide();
+    var box = $('#' + boxName + '-box');
+    if (box.length)
+        box.show().siblings('.box').hide();
+    else
+        routeError('#!settings');
 
     if (currentHost == '!default')
         deleteBtn.attr({disabled: ''});
@@ -163,6 +166,11 @@ function deleteAll() {
             });
         });
     });
+}
+
+function routeError(hash) {
+    alert('Unknown host/route "' + location.hash + '". Calling for a trampoline!');
+    location.hash = hash;
 }
 
 $.fn.CodeMirror = function (mode) {
