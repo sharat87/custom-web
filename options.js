@@ -107,6 +107,17 @@ function importClipboard() {
     el.remove();
 }
 
+function importFile() {
+    $('<input type=file>').click().on('change', function () {
+        var reader = new FileReader();
+        reader.onload = function () {
+            importData(reader.result);
+        };
+        reader.readAsText(this.files[0]);
+        $(this).remove();
+    });
+}
+
 function importData(data) {
     data = JSON.parse(data).codes;
 
