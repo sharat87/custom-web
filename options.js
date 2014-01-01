@@ -83,7 +83,7 @@ function showUndoOsd(host, callback) {
             $(this).removeClass('active has-data');
             if (callback) callback();
         })
-        .clearQueue()
+        .finish()
         .addClass('active has-data')
         .delay(duration)
         .queue(function () {
