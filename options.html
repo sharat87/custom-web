@@ -8,8 +8,7 @@
 <aside>
   <h2 class=title>Custom Web <sup class=version></sup></h2>
   <a href='#!settings'>Settings</a>
-  <a href='#!ie'>Import/Export</a>
-  <a href='#!doc'>Documentation</a>
+  <a href='#!doc'>Help & About</a>
   <h3 class=title>
     Domains saved
     <button class=new-domain-btn title='Add a new domain' clicked=newDomain>+</button>
@@ -25,26 +24,23 @@
 
 <section id=settings-box class=box>
   <h2>Custom Web Settings</h2>
-  <p>Nothing here yet! Select a domain from the left side to edit custom css and
-  js for that domain.</p>
-</section>
+  <p>Nothing to configure yet! Select a domain from the left side to edit custom
+    css and js for that domain.</p>
 
-<section id=ie-box class=box>
   <h2>Export</h2>
   <button clicked=exportClipboard>Export to clipboard</button>
   <a id=download-btn download=custom-web-export.json class=btn
     title='Download file "custom-web-export.json"'>Download export file</a>
   <p><b><i>Please</i> make a backup of your data. Also, you may wish to test
       your exported data with the import tool below.</b></p>
+
   <h2>Import</h2>
   <button clicked=importClipboard>Import from clipboard</button>
-  <label>
-    <input id=clear-import-check type=checkbox>
-    <span>Delete all existing items before importing?</span>
-  </label>
   <p><b><i>Note:</i> Domains present in the imported data above will
       <i>overwrite</i> your current customisations, if you have the same domain
       available. This may not be what you would expect.</b></p>
+
+  <h2>Delete all data</h2>
 </section>
 
 <section id=doc-box class=box>
@@ -64,7 +60,7 @@
   </label>
 
   <button id=del-btn clicked=deleteCurrent>Delete customisations for this host</button>
-  <a href='#!doc' id=doc-ln class=btn>Read the documentation for more details</a>
+  <a href='#!doc' id=doc-ln class=btn>Read help for more details</a>
   <p>Your code is automatically saved.</p>
 
 </section>

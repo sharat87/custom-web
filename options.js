@@ -115,30 +115,21 @@ function importData(data) {
         return;
     }
 
-    var host = currentHost,
-        clear = $('#clear-import-check').is(':checked');
-
+    var host = currentHost;
     chrome.storage.local.get(null, function (backup) {
-        if (clear)
-            chrome.storage.local.clear(doImport);
-        else
-            doImport();
-
-        function doImport() {
-            chrome.storage.local.set(data, function () {
-                loadDomains(function () {
-                    location.hash = '#' + Object.keys(data)[0];
-                });
-                showUndoOsd('Import', function () {
-                    chrome.storage.local.clear(function () {
-                        chrome.storage.local.set(backup);
-                        loadDomains(function () {
-                            location.hash = '#!ie';
-                        });
+        chrome.storage.local.set(data, function () {
+            loadDomains(function () {
+                location.hash = '#' + Object.keys(data)[0];
+            });
+            showUndoOsd('Import', function () {
+                chrome.storage.local.clear(function () {
+                    chrome.storage.local.set(backup);
+                    loadDomains(function () {
+                        location.hash = '#!settings';
                     });
                 });
             });
-        }
+        });
     });
 }
 
