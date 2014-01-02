@@ -27,10 +27,18 @@ make it fairly easy to hit the limits.  However using `chrome.storage.local`
 with the `unlimitedStorage` permission, resolves this, but loses syncing. You
 are advised to regularly export your data and keep a backup handy.
 
+## Migrate from dotjs
+
+I used to use the dotjs extension before creating this. I have written a small
+python script that will export all your dotjs scripts (from `~/.js`) and styles
+(from `~/.css`) to a format that this extension can import.
+
+You can get the `dotjs-export.py` script from the [project page on github](gh).
+
 ## About
 
 I am Shrikant Sharat Kandula, from India. Find me on [the web](http://sharats.me),
-[twitter](https://twitter.com/sharat87) and [github](https://github.com/sharat87).
+[twitter](https://twitter.com/sharat87) and [github](gh).
 
 ## License
 
@@ -56,3 +64,5 @@ provided inspiration to this project.
 - JScript Tricks
 - Stylish (only CSS, has sharing features, integrates with userstyles.org)
 - TamperMonkey (only JS, integrates with userscripts.org)
+
+[gh]: https://github.com/sharat87
