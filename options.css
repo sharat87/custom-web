@@ -53,6 +53,10 @@ html, body {
     background-color: #FDF6E3;
 }
 
+h1 {
+    font-size: 1.7em;
+}
+
 h1, h2, h3 {
     color: #B58900;
     margin: 12px 0 6px;
@@ -167,7 +171,7 @@ aside > a.active {
 }
 
 .box h2 {
-    margin-top: 18px;
+    margin-top: 24px;
 }
 
 label {
