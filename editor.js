@@ -71,6 +71,10 @@ function setup() {
         e.preventDefault();
     });
 
+    textareas.on('keydown keypress keyup', function (e) {
+        e.stopPropagation();
+    });
+
     cssInput.focus();
 }
 
