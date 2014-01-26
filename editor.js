@@ -67,6 +67,7 @@ function setup() {
         chrome.runtime.sendMessage({
             open: chrome.extension.getURL('options.html#' + location.host)
         });
+        toggleBox();
         e.preventDefault();
     });
 
