@@ -74,9 +74,11 @@ function setup() {
 }
 
 function initUi () {
-    box = $('<div id=custom-web-box>').appendTo(document.body).css({right: 0});
+    var container = $('<div custom-web>').appendTo(document.body);
+    var shadow = container[0].webkitCreateShadowRoot();
     $.get(chrome.extension.getURL('editor.html'), function (data) {
-        box.html(data);
+        shadow.innerHTML = data;
+        box = $(shadow.querySelector('#custom-web-box'));
         setup();
     });
 }

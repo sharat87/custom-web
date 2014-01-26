@@ -1,13 +1,76 @@
-<a href=# class=cweb-open-btn>Edit in options page</a>
+<div id=custom-web-box style=right:0>
+  <a href=# class=cweb-open-btn>Edit in options page</a>
 
-<div class=cweb-sep>
-  <span class=cweb-t>CSS Styles</span>
-  <button class=cweb-move-btn>&harr;</button>
-</div>
-<textarea spellcheck=false class=cweb-css-input rows=12 placeholder='CSS to add'></textarea>
+  <div class=cweb-sep>
+    <span class=cweb-t>CSS Styles</span>
+    <button class=cweb-move-btn>&harr;</button>
+  </div>
+  <textarea spellcheck=false class=cweb-css-input rows=12 placeholder='CSS to add'></textarea>
 
-<div class=cweb-sep>
-  <span class=cweb-t>JavaScript</span>
-  <button class=cweb-run-btn>▶ Run</button>
+  <div class=cweb-sep>
+    <span class=cweb-t>JavaScript</span>
+    <button class=cweb-run-btn>▶ Run</button>
+  </div>
+  <textarea spellcheck=false class=cweb-js-input rows=12 placeholder='JavaScript to run'></textarea>
 </div>
-<textarea spellcheck=false class=cweb-js-input rows=12 placeholder='JavaScript to run'></textarea>
+
+<style>
+* { box-sizing: border-box; }
+
+#custom-web-box {
+    display: none;
+    position: fixed;
+    background: #FFF;
+    color: #222;
+    font: 14px sans;
+    top: 0;
+    width: 340px;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 9999999999;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+#custom-web-box .cweb-open-btn {
+    display: block;
+    padding: 6px;
+    text-align: center;
+}
+
+#custom-web-box .cweb-t {
+    font-family: serif;
+    font-size: 1.2em;
+    padding: 3px;
+}
+
+#custom-web-box .cweb-sep {
+    padding: 3px;
+}
+
+#custom-web-box textarea {
+    width: 100%;
+    display: block;
+    font-size: inherit;
+    padding: 6px;
+    margin-top: 3px;
+    border-style: solid;
+    border-width: 1px 0;
+    border-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    color: inherit;
+}
+
+#custom-web-box textarea:focus {
+    border-color: #000;
+    outline: none;
+}
+
+#custom-web-box button {
+    float: right;
+    font: inherit;
+    cursor: pointer;
+    margin: 0;
+    padding: 3px 6px;
+}
+</style>
