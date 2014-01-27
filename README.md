@@ -33,7 +33,8 @@ I used to use the dotjs extension before creating this. I have written a small
 python script that will export all your dotjs scripts (from `~/.js`) and styles
 (from `~/.css`) to a format that this extension can import.
 
-You can get the `dotjs-export.py` script from the [project page on github](gh).
+You can get the `dotjs-export.py` script from the [project page on
+github](https://raw2.github.com/sharat87/custom-web/master/dotjs-export.py).
 
 ## About
 
