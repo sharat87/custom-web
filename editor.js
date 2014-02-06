@@ -1,4 +1,5 @@
-var box = null,
+var container = null,
+    box = null,
     domainStyle = $('<style cweb-dom>'),
     defaultStyle = $('<style cweb-def>');
 
@@ -74,12 +75,10 @@ function setup() {
     textareas.on('keydown keypress keyup', function (e) {
         e.stopPropagation();
     });
-
-    cssInput.focus();
 }
 
 function initUi () {
-    var container = $('<div custom-web>').appendTo(document.body);
+    container = $('<div custom-web>');
     var shadow = container[0].webkitCreateShadowRoot();
     $.get(chrome.extension.getURL('editor.html'), function (data) {
         shadow.innerHTML = data;
@@ -98,9 +97,14 @@ function toggleBox() {
             opacity: 1
         };
     if (box.is(':visible')) {
-        box.animate(hideStyle, 200, box.hide.bind(box));
+        box.animate(hideStyle, 200, function () {
+            container.detach();
+        });
     } else {
-        box.show().css(hideStyle).animate(showStyle, 200);
+        container.appendTo(document.body);
+        box.css(hideStyle).animate(showStyle, 200, function () {
+            box.find('textarea:first').focus();
+        });
     }
 }
 
