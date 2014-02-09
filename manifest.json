@@ -1,6 +1,6 @@
 {
   "name": "Custom Web",
-  "version": "0.2",
+  "version": "0.3",
   "description": "Customize the web by adding your own js and css to websites.",
   "permissions": ["storage", "clipboardWrite", "clipboardRead", "unlimitedStorage"],
   "background": {"scripts": ["background.js"]},
