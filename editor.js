@@ -111,9 +111,9 @@ function toggleBox() {
 function runJs(code, wrap) {
     if (wrap !== false)
         code = "(function ($) { var jQuery = $; " + code + " }.call(__cweb_scope, __cweb_jQuery));";
-    var el = $('<script>', {text: code});
-    el.appendTo(document.body || document.documentElement);
-    el.remove();
+    $('<script>', {text: code})
+        .appendTo(document.body || document.documentElement)
+        // .remove();
 }
 
 chrome.runtime.onMessage.addListener(function (action) {
