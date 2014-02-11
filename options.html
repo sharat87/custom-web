@@ -24,8 +24,21 @@
 
 <section id=settings-box class=box>
   <h1>Custom Web Settings</h1>
-  <p>Nothing to configure yet! Select a domain from the left side to edit custom
-    css and js for that domain.</p>
+  <div class=pack>
+    <span>Right-click Menus</span>
+    <div>
+      <label>
+        <input type=checkbox name=menu-open-here>
+        <span>Open Editor</span>
+      </label>
+      <label>
+        <input type=checkbox name=menu-open-options>
+        <span>Edit in Options</span>
+      </label>
+    </div>
+  </div>
+
+  <p>Select a domain from the left side to edit custom css and js for that domain.</p>
 
   <h2>Export</h2>
   <button clicked=exportClipboard>Export to clipboard</button>

@@ -179,6 +179,22 @@ label {
     margin-bottom: 6px;
 }
 
+#settings-box .pack {
+    margin: 12px 0;
+}
+
+#settings-box .pack > * {
+    float: left;
+    min-width: 200px;
+}
+
+#settings-box .pack:after {
+    content: ' ';
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
 #ie-box textarea {
     display: block;
     width: 100%;

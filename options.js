@@ -205,6 +205,21 @@ $('[clicked]').click(function (e) {
     return window[this.getAttribute('clicked')].call(this, e);
 });
 
+$('input[name]')
+    .each(function (e) {
+        var el = this;
+        chrome.storage.local.get(':' + el.name, function (data) {
+            if (el.type == 'checkbox')
+                el.checked = data[':' + el.name];
+        });
+    })
+    .change(function (e) {
+        var data = {};
+        if (this.type == 'checkbox')
+            data[':' + this.name] = this.checked;
+        chrome.storage.local.set(data);
+    });
+
 $(window).on('hashchange', applyHash);
 cssInput.on('change', save);
 jsInput.on('change', save);
