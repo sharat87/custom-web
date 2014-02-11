@@ -21,16 +21,21 @@ function setup() {
         cssInput = box.find('.cweb-css-input'),
         jsInput = box.find('.cweb-js-input');
 
+    var watchTimeout = null;
     textareas.on('keydown change', function () {
-        setTimeout(function () {
-            domainStyle.text(cssInput.val());
-            var data = {};
-            data[location.host] = {
-                css: cssInput.val() || '',
-                js: jsInput.val() || ''
-            };
-            chrome.storage.local.set(data);
-        });
+        if (watchTimeout)
+            clearTimeout(watchTimeout);
+        watchTimeout = setTimeout(function () {
+            setTimeout(function () {
+                domainStyle.text(cssInput.val());
+                var data = {};
+                data[location.host] = {
+                    css: cssInput.val() || '',
+                    js: jsInput.val() || ''
+                };
+                chrome.storage.local.set(data);
+            });
+        }, 700);
     });
 
     chrome.storage.onChanged.addListener(function (changes) {
