@@ -2,7 +2,7 @@
   "name": "Custom Web",
   "version": "0.3",
   "description": "Customize the web by adding your own js and css to websites.",
-  "permissions": ["storage", "clipboardWrite", "clipboardRead", "unlimitedStorage"],
+  "permissions": ["storage", "clipboardWrite", "clipboardRead", "unlimitedStorage", "contextMenus"],
   "background": {"scripts": ["background.js"]},
   "browser_action": {
     "default_icon": {
