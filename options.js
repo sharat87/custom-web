@@ -2,7 +2,8 @@ function loadDomains(callback) {
     chrome.storage.local.get(null, function (data) {
         var ul = $('#domain-list').empty(), keys = Object.keys(data);
         for (var i = keys.length; i-- > 0;)
-            ul.prepend('<li><a href="#' + keys[i] + '">' + keys[i] + '</a></li>');
+            if (keys[i][0] != ':')
+                ul.prepend('<li><a href="#' + keys[i] + '">' + keys[i] + '</a></li>');
         if (callback) callback();
     });
 }
