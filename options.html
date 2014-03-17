@@ -42,32 +42,48 @@
 
   <p>Your changes are saved automatically.</p>
 
-  <h2>Export</h2>
-  <button clicked=exportClipboard>Export to clipboard</button>
-  <a id=download-btn download=custom-web-export.json class=btn
-    title='Download file "custom-web-export.json"'>Download export file</a>
-  <p><b><i>Please</i> make a backup of your data.</b> Also, you may wish to test
-      your exported data with the import tool below.</p>
+  <div class=pack>
+    <h2>Export</h2>
+    <div>
+      <button clicked=exportClipboard>Export to clipboard</button>
+      <a id=download-btn download=custom-web-export.json class=btn
+        title='Download file "custom-web-export.json"'>Download export file</a>
+      <p><b><i>Please</i> make a backup of your data.</b> <br>Also, you may wish to test
+          your exported data with the import tool below.</p>
+    </div>
+  </div>
 
-  <h2>Import</h2>
-  <button clicked=importClipboard>Import from clipboard</button>
-  <button clicked=importFile>Import from file</button>
-  <p><b><i>Note:</i> Domains present in the imported data above will
-      <i>overwrite</i> your current customisations, if you have the same domain
-      available. This may not be what you would expect.</b></p>
+  <div class=pack>
+    <h2>Import</h2>
+    <div>
+      <button clicked=importClipboard>Import from clipboard</button>
+      <button clicked=importFile>Import from file</button>
+      <p><b><i>Note:</i> Domains present in the imported data above will
+          <i>overwrite</i> your current customisations, <br>if you have the same domain
+          available. This may not be what you would expect.</b></p>
+    </div>
+  </div>
 
-  <h2>Delete all data</h2>
-  <button class=del-all-btn clicked=deleteAll>Delete all data</button>
+  <div class=pack>
+    <h2>Delete all data</h2>
+    <div>
+      <button class=del-all-btn clicked=deleteAll>Delete all data</button>
+    </div>
+  </div>
 
-  <h2>Contribute</h2>
-  <a class='btn donate-btn' href='https://gum.co/cweb' target=_blank>
-    Donate to the Custom Web extension</a>
-  <p>Or you could help by reporting bugs on the github issue tracker. While I'm
-    open to feature requests, I consider the lack of a big feature set itself to
-    be a feature. But, more awesomeness is always welcome :). Thank you for
-    using Custom Web.</p>
-  <p>Also, I'm no designer. If you are one, any suggestions and tips on that end
-    are also welcome. Thanks!</p>
+  <div class=pack>
+    <h2>Contribute</h2>
+    <div>
+      <a class='btn donate-btn' href='https://gum.co/cweb' target=_blank>
+        Donate to the Custom Web extension</a>
+      <p>Or you could help by reporting bugs on the github issue tracker.
+        <br>While I'm open to feature requests, I consider the lack of a big
+        feature set itself to be a feature. <br>But, more awesomeness is always
+        welcome :). Thank you for using Custom Web.</p>
+      <p>Also, I'm no designer. If you are one, any suggestions and tips on that end
+        are also welcome. Thanks!</p>
+    </div>
+  </div>
 </section>
 
 <section id=doc-box class=box>

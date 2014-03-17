@@ -180,7 +180,16 @@ label {
 }
 
 #settings-box .pack {
-    margin: 12px 0;
+    margin: 18px 0;
+}
+
+#settings-box .pack h2 {
+    display: inline-block;
+    margin: 0;
+}
+
+#settings-box .pack p {
+    margin: 6px 6px 0;
 }
 
 #settings-box .pack > * {
@@ -271,6 +280,7 @@ label {
 
 .del-all-btn {
     -webkit-transform: scale(.8);
+    -webkit-transform-origin: left;
 }
 
 .del-all-btn:hover {
